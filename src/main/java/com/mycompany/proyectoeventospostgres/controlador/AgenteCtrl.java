@@ -110,6 +110,13 @@ public class AgenteCtrl implements ActionListener, MouseListener {
             menuView.setVisible(true);
             agenteView.setVisible(false);
         }
+
+        if (e.getSource().equals(agenteView.getJbCancelar())){
+
+            agenteView.limpiarJtexField();
+            agenteView.getTxtCedula().setEditable(true);
+            agenteView.getJbCancelar().setVisible(false);
+        }
     }
 
     @Override
@@ -125,6 +132,7 @@ public class AgenteCtrl implements ActionListener, MouseListener {
             agenteModel.seleccionar(agenteView.getTbListaAgentes(),
                     cedula, nombre, direccion, telefono, email);
             agenteView.getTxtCedula().setEditable(false);
+            agenteView.getJbCancelar().setVisible(true);
         }
     }
 
