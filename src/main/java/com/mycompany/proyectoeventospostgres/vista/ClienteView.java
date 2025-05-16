@@ -25,7 +25,7 @@ public class ClienteView extends javax.swing.JFrame {
         clienteCtrl = new ClienteCtrl(this);
         clienteModel = new ClienteModel();
         initComponents();
-        clienteModel.mostrar(tbListaAgentes);
+        clienteModel.mostrar(tblista);
 
     }
 
@@ -100,7 +100,7 @@ public class ClienteView extends javax.swing.JFrame {
     }
 
     public JTable getTbListaAgentes() {
-        return tbListaAgentes;
+        return tblista;
     }
 
     public void limpiarJtexField(){
@@ -143,11 +143,11 @@ public class ClienteView extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbListaAgentes = new javax.swing.JTable();
+        tblista = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Agente Comercial"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Clientes"));
 
         jLabel1.setText("Cédula");
 
@@ -271,7 +271,7 @@ public class ClienteView extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de Clientes"));
 
-        tbListaAgentes.setModel(new javax.swing.table.DefaultTableModel(
+        tblista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -279,8 +279,8 @@ public class ClienteView extends javax.swing.JFrame {
 
             }
         ));
-        tbListaAgentes.addMouseListener(clienteCtrl);
-        jScrollPane1.setViewportView(tbListaAgentes);
+        tblista.addMouseListener(clienteCtrl);
+        jScrollPane1.setViewportView(tblista);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -395,7 +395,7 @@ public class ClienteView extends javax.swing.JFrame {
     private javax.swing.JButton jbCancelar;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbSalir;
-    private javax.swing.JTable tbListaAgentes;
+    private javax.swing.JTable tblista;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCelular;
     private javax.swing.JTextField txtDireccion;

@@ -47,7 +47,7 @@ public class MenuCtrl implements ActionListener {
 
         if (e.getSource().equals(menuView.getJbGestionPropietario())){
             System.out.println("Ingresando empleado");
-            /*
+
             menuView.setVisible(false);
 
             if (propietarioView == null){
@@ -55,7 +55,7 @@ public class MenuCtrl implements ActionListener {
             }
             propietarioView.setVisible(true);
 
-             */
+
         }
 
     }

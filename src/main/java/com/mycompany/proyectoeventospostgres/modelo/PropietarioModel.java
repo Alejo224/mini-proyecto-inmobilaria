@@ -10,35 +10,26 @@ import java.sql.Statement;
 public class PropietarioModel extends PersonaModel {
 
     private final ConexionBD conexionBD = new ConexionBD();
-    //private AgenteModel agenteModel = new AgenteModel();
-    //private int getCedulaAgente = agenteModel.getCedula();
-    private AgenteModel agenteModel;
+    private int cedulaAgenteC;
 
     public PropietarioModel(){}
 
-    public PropietarioModel(int cedula, String nombre, String telefono, String direccion, String email, AgenteModel agenteModel) {
+    public PropietarioModel(int cedula, String nombre, String telefono, String direccion, String email, int cedulaAgenteC) {
         super(cedula, nombre, telefono, direccion, email);
-        this.agenteModel = agenteModel;
+        this.cedulaAgenteC = cedulaAgenteC;
     }
 
-    public int getCedulaAgente(){
-        return agenteModel.getCedula();
-    }
-    public void setCedulaAgente(int cedulaAgente){
-        this.agenteModel.setCedula(cedulaAgente);
+    public int getCedulaAgenteC() {
+        return cedulaAgenteC;
     }
 
-    public AgenteModel getAgenteModel() {
-        return agenteModel;
-    }
-
-    public void setAgenteModel(AgenteModel agenteModel) {
-        this.agenteModel = agenteModel;
+    public void setCedulaAgenteC(int cedulaAgenteC) {
+        this.cedulaAgenteC = cedulaAgenteC;
     }
 
     public void buscar(JTextField cedula){
 
-        String consulta = "select * from inmobilaria.cliente where cedula=?;";
+        String consulta = "select * from inmobilaria.propietario where cedula=?;";
 
         try{
             setCedula(Integer.parseInt(cedula.getText()));
@@ -69,14 +60,14 @@ public class PropietarioModel extends PersonaModel {
                         JTextField email,
                         JTextField cedulaAgente) throws SQLException, NumberFormatException{
 
-        String consulta = "insert into inmobilaria.propietario (cedula, nombre_completo, telefono, direccion, email, cedulaAgente) values (?,?,?,?,?,?);";
+        String consulta = "insert into inmobilaria.propietario (cedula, nombre_completo, telefono, direccion, email, cedula_agente) values (?,?,?,?,?,?);";
 
         setCedula(Integer.parseInt(cedula.getText()));
         setNombre(nombre.getText());
         setDireccion(direccion.getText());
         setTelefono(telefono.getText());
         setEmail(email.getText());
-        setCedulaAgente(Integer.parseInt(cedulaAgente.getText()));
+        setCedulaAgenteC(Integer.parseInt(cedulaAgente.getText()));
 
         CallableStatement cs = conexionBD.establecerConnetion().prepareCall(consulta);
 
@@ -85,7 +76,7 @@ public class PropietarioModel extends PersonaModel {
         cs.setString(3, getTelefono());
         cs.setString(4, getDireccion());
         cs.setString(5, getEmail());
-        cs.setInt(6, getCedulaAgente());
+        cs.setInt(6, getCedulaAgenteC());
         cs.execute();
 
         JOptionPane.showMessageDialog(null, "Se guardó correctamente");
@@ -101,7 +92,7 @@ public class PropietarioModel extends PersonaModel {
         modelo.addColumn("celular");
         modelo.addColumn("direccion");
         modelo.addColumn("correo electronico");
-        modelo.addColumn("agente");
+        modelo.addColumn("cedula agente");
 
         if (tablatotal == null){
             tablatotal = new JTable();
@@ -122,11 +113,11 @@ public class PropietarioModel extends PersonaModel {
                 setTelefono(rs.getString("telefono"));
                 setDireccion(rs.getString("direccion"));
                 setEmail(rs.getString("email"));
-                setCedulaAgente(rs.getInt("agente"));
+                setCedulaAgenteC(rs.getInt("cedula_agente"));
 
                 modelo.addRow(new Object[]{ getCedula(),
                         getNombre(), getTelefono(), getDireccion(),
-                        getEmail(), getCedulaAgente()});
+                        getEmail(), getCedulaAgenteC()});
             }
             tablatotal.setModel(modelo);
         }catch (Exception e){
@@ -168,9 +159,9 @@ public class PropietarioModel extends PersonaModel {
         setDireccion(direccion.getText());
         setTelefono(telefono.getText());
         setEmail(email.getText());
-        setCedulaAgente(Integer.parseInt(cedulaAgente.getText()));
+        setCedulaAgenteC(Integer.parseInt(cedulaAgente.getText()));
 
-        String consulta = "UPDATE inmobilaria.propietario SET cedula =?, nombre_completo = ?, telefono = ?, direccion = ?, email = ?, cedulaAgente = ?, WHERE cedula=?;";
+        String consulta = "UPDATE inmobilaria.propietario SET cedula =?, nombre_completo = ?, telefono = ?, direccion = ?, email = ?, cedula_agente = ? WHERE cedula=?;";
 
         CallableStatement cs = conexionBD.establecerConnetion().prepareCall(consulta);
 
@@ -179,11 +170,11 @@ public class PropietarioModel extends PersonaModel {
         cs.setString(3, getTelefono());
         cs.setString(4, getDireccion());
         cs.setString(5, getEmail());
-        cs.setInt(6, getCedulaAgente());
+        cs.setInt(6, getCedulaAgenteC());
         cs.setInt(7, getCedula());
 
         cs.execute();
-            JOptionPane.showMessageDialog(null, "Propietario ha sido actualizado");
+        JOptionPane.showMessageDialog(null, "Propuietario ha sido actualizado");
         System.out.println("si funciona");
     }
 
@@ -195,7 +186,7 @@ public class PropietarioModel extends PersonaModel {
         CallableStatement cs = conexionBD.establecerConnetion().prepareCall(consulta);
         cs.setInt(1, getCedula());
 
-        int respuesta = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar al propietario?",
+        int respuesta = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar al cliente?",
                 "Confimación de elimnar agente",JOptionPane.YES_NO_OPTION);
 
         if (respuesta == 0){
