@@ -10,14 +10,30 @@ import java.sql.Statement;
 public class ClienteModel extends PersonaModel {
 
     private final ConexionBD conexionBD = new ConexionBD();
-    private AgenteModel agenteModel = new AgenteModel();
-    private String cedulaAgente = String.valueOf(agenteModel.getCedula());
+    //private AgenteModel agenteModel = new AgenteModel();
+    //private int getCedulaAgente = agenteModel.getCedula();
+    private AgenteModel agenteModel;
 
     public ClienteModel(){}
 
-    public ClienteModel(int cedula, String nombre, String telefono, String direccion, String email,  String cedulaAgente) {
+    public ClienteModel(int cedula, String nombre, String telefono, String direccion, String email,  AgenteModel agenteModel) {
         super(cedula, nombre, telefono, direccion, email);
-        this.cedulaAgente = cedulaAgente;
+        this.agenteModel = agenteModel;
+    }
+
+    public int getCedulaAgente(){
+        return agenteModel.getCedula();
+    }
+    public void setCedulaAgente(int cedulaAgente){
+        this.agenteModel.setCedula(cedulaAgente);
+    }
+
+    public AgenteModel getAgenteModel() {
+        return agenteModel;
+    }
+
+    public void setAgenteModel(AgenteModel agenteModel) {
+        this.agenteModel = agenteModel;
     }
 
     public void buscar(JTextField cedula){
@@ -50,15 +66,17 @@ public class ClienteModel extends PersonaModel {
                         JTextField nombre,
                         JTextField direccion,
                         JTextField telefono,
-                        JTextField email) throws SQLException, NumberFormatException{
+                        JTextField email,
+                        JTextField cedulaAgente) throws SQLException, NumberFormatException{
 
-        String consulta = "insert into inmobilaria.cliente (cedula, nombre_completo, telefono, direccion, email) values (?,?,?,?,?);";
+        String consulta = "insert into inmobilaria.cliente (cedula, nombre_completo, telefono, direccion, email, cedulaAgente) values (?,?,?,?,?,?);";
 
         setCedula(Integer.parseInt(cedula.getText()));
         setNombre(nombre.getText());
         setDireccion(direccion.getText());
         setTelefono(telefono.getText());
         setEmail(email.getText());
+        setCedulaAgente(Integer.parseInt(cedulaAgente.getText()));
 
         CallableStatement cs = conexionBD.establecerConnetion().prepareCall(consulta);
 
@@ -67,14 +85,14 @@ public class ClienteModel extends PersonaModel {
         cs.setString(3, getTelefono());
         cs.setString(4, getDireccion());
         cs.setString(5, getEmail());
-
+        cs.setInt(6, getCedulaAgente());
         cs.execute();
 
         JOptionPane.showMessageDialog(null, "Se guardó correctamente");
 
     }
 
-    public void mostrarAgentesComerciales(JTable tablaTotalAgentes){
+    public void mostrar(JTable tablatotal){
 
         DefaultTableModel modelo = new DefaultTableModel();
 
@@ -83,13 +101,14 @@ public class ClienteModel extends PersonaModel {
         modelo.addColumn("celular");
         modelo.addColumn("direccion");
         modelo.addColumn("correo electronico");
+        modelo.addColumn("agente");
 
-        if (tablaTotalAgentes == null){
-            tablaTotalAgentes = new JTable();
+        if (tablatotal == null){
+            tablatotal = new JTable();
         }
 
-        tablaTotalAgentes.setModel(modelo);
-        String consulta = "SELECT * FROM inmobilaria.agente_comercial;";
+        tablatotal.setModel(modelo);
+        String consulta = "SELECT * FROM inmobilaria.cliente;";
 
         try {
             Statement st = conexionBD.establecerConnetion().createStatement();
@@ -103,12 +122,13 @@ public class ClienteModel extends PersonaModel {
                 setTelefono(rs.getString("telefono"));
                 setDireccion(rs.getString("direccion"));
                 setEmail(rs.getString("email"));
+                setCedulaAgente(rs.getInt("agente"));
 
                 modelo.addRow(new Object[]{ getCedula(),
                         getNombre(), getTelefono(), getDireccion(),
-                        getEmail()});
+                        getEmail(), getCedulaAgente()});
             }
-            tablaTotalAgentes.setModel(modelo);
+            tablatotal.setModel(modelo);
         }catch (Exception e){
 
             JOptionPane.showMessageDialog(null,"Error: "+ e);
@@ -117,15 +137,17 @@ public class ClienteModel extends PersonaModel {
         }
     }
 
-    public void seleccionar(JTable tablaTotalAgentes, JTextField cedula, JTextField nombre_completo, JTextField direccion, JTextField celular, JTextField correo_electronico ){
+    public void seleccionar(JTable tablatotal, JTextField cedula, JTextField nombre_completo, JTextField direccion, JTextField celular, JTextField correo_electronico,
+                            JTextField cedulaAgente){
         try{
-            int fila = tablaTotalAgentes.getSelectedRow();
+            int fila = tablatotal.getSelectedRow();
             if(fila>=0){
-                cedula.setText(tablaTotalAgentes.getValueAt(fila, 0).toString());
-                nombre_completo.setText(tablaTotalAgentes.getValueAt(fila, 1).toString());
-                celular.setText(tablaTotalAgentes.getValueAt(fila, 2).toString());
-                direccion.setText(tablaTotalAgentes.getValueAt(fila, 3).toString());
-                correo_electronico.setText(tablaTotalAgentes.getValueAt(fila, 4).toString());
+                cedula.setText(tablatotal.getValueAt(fila, 0).toString());
+                nombre_completo.setText(tablatotal.getValueAt(fila, 1).toString());
+                celular.setText(tablatotal.getValueAt(fila, 2).toString());
+                direccion.setText(tablatotal.getValueAt(fila, 3).toString());
+                correo_electronico.setText(tablatotal.getValueAt(fila, 4).toString());
+                cedulaAgente.setText(tablatotal.getValueAt(fila, 5).toString());
             }
             else{
                 JOptionPane.showMessageDialog(null,"Fila no seleccionada");
@@ -138,15 +160,17 @@ public class ClienteModel extends PersonaModel {
                           JTextField nombre,
                           JTextField direccion,
                           JTextField telefono,
-                          JTextField email) throws SQLException, NumberFormatException{
+                          JTextField email,
+                          JTextField cedulaAgente) throws SQLException, NumberFormatException{
 
         setCedula(Integer.parseInt(cedula.getText()));
         setNombre(nombre.getText());
         setDireccion(direccion.getText());
         setTelefono(telefono.getText());
         setEmail(email.getText());
+        setCedulaAgente(Integer.parseInt(cedulaAgente.getText()));
 
-        String consulta = "UPDATE inmobilaria.cliente SET cedula =?, nombre_completo = ?, telefono = ?, direccion = ?, email = ? WHERE cedula=?;";
+        String consulta = "UPDATE inmobilaria.cliente SET cedula =?, nombre_completo = ?, telefono = ?, direccion = ?, email = ?, cedulaAgente = ?, WHERE cedula=?;";
 
         CallableStatement cs = conexionBD.establecerConnetion().prepareCall(consulta);
 
@@ -155,8 +179,8 @@ public class ClienteModel extends PersonaModel {
         cs.setString(3, getTelefono());
         cs.setString(4, getDireccion());
         cs.setString(5, getEmail());
-
-        cs.setInt(6, getCedula());
+        cs.setInt(6, getCedulaAgente());
+        cs.setInt(7, getCedula());
 
         cs.execute();
         JOptionPane.showMessageDialog(null, "Cliente ha sido actualizado");
