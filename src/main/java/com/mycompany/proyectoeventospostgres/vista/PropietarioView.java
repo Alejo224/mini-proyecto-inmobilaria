@@ -24,7 +24,7 @@ public class PropietarioView extends javax.swing.JFrame {
         //agenteCtrl = new AgenteCtrl(this);
         //agenteModel = new AgenteModel();
         initComponents();
-        agenteModel.mostrarAgentesComerciales(tbListaAgentes);
+        //agenteModel.mostrarAgentesComerciales(tbListaAgentes);
 
     }
 

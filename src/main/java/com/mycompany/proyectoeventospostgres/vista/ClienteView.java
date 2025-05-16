@@ -4,8 +4,8 @@
  */
 package com.mycompany.proyectoeventospostgres.vista;
 
-import com.mycompany.proyectoeventospostgres.controlador.AgenteCtrl;
-import com.mycompany.proyectoeventospostgres.modelo.AgenteModel;
+import com.mycompany.proyectoeventospostgres.controlador.ClienteCtrl;
+import com.mycompany.proyectoeventospostgres.modelo.ClienteModel;
 
 import javax.swing.*;
 
@@ -18,13 +18,14 @@ public class ClienteView extends javax.swing.JFrame {
     /**
      * Creates new form VistaMenuPrincipal
      */
-    private AgenteCtrl agenteCtrl;
-    private AgenteModel agenteModel;
+    private ClienteCtrl clienteCtrl;
+    private ClienteModel clienteModel;
+
     public ClienteView() {
-        //agenteCtrl = new AgenteCtrl(this);
-        agenteModel = new AgenteModel();
+        clienteCtrl = new ClienteCtrl(this);
+        clienteModel = new ClienteModel();
         initComponents();
-        agenteModel.mostrarAgentesComerciales(tbListaAgentes);
+        clienteModel.mostrar(tbListaAgentes);
 
     }
 
@@ -33,11 +34,11 @@ public class ClienteView extends javax.swing.JFrame {
     */
 
     public JButton getJbEliminar() {
-        return jButton2;
+        return jbEliminar;
     }
 
     public JButton getJbModificar() {
-        return jButton1;
+        return jbModificar;
     }
 
     public JButton getJbGuardar() {
@@ -67,11 +68,11 @@ public class ClienteView extends javax.swing.JFrame {
     }
     //-------------------------------------------------
     public JTextField getTxtCedulaAgenteComercial(){
-        return jTextField1;
+        return jtxtCedulaAgente;
     }
     
     public void setTxtCedulaAgenteComercial(JTextField txtCedulaAgenteComercial){
-        this.jTextField1 = txtCedulaAgenteComercial;
+        this.jtxtCedulaAgente = txtCedulaAgenteComercial;
     }
     //---------------------------------------------------
     public void setTxtCedula(JTextField txtCedula) {
@@ -109,6 +110,7 @@ public class ClienteView extends javax.swing.JFrame {
         txtCelular.setText(null);
         txtDireccion.setText(null);
         txtEmail.setText(null);
+        jtxtCedulaAgente.setText(null);
 
     }
 
@@ -130,14 +132,14 @@ public class ClienteView extends javax.swing.JFrame {
         txtCedula = new javax.swing.JTextField();
         txtCelular = new javax.swing.JTextField();
         txtDireccion = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jbModificar = new javax.swing.JButton();
+        jbEliminar = new javax.swing.JButton();
         jbGuardar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         jbCancelar = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
+        jtxtCedulaAgente = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -167,18 +169,17 @@ public class ClienteView extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Modificar");
+        jbModificar.setText("Modificar");
+        jbModificar.addActionListener(clienteCtrl);
 
-        jButton2.setText("Eliminar");
+        jbEliminar.setText("Eliminar");
+        jbEliminar.addActionListener(clienteCtrl);
 
         jbGuardar.setText("Guardar");
-        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbGuardarActionPerformed(evt);
-            }
-        });
+        jbGuardar.addActionListener(clienteCtrl);
 
         jbSalir.setText("Salir");
+        jbSalir.addActionListener(clienteCtrl);
 
         jLabel5.setText("Email");
 
@@ -189,6 +190,7 @@ public class ClienteView extends javax.swing.JFrame {
         });
 
         jbCancelar.setText("Cancelar");
+        jbCancelar.addActionListener(clienteCtrl);
 
         jLabel6.setText("Cédula del agente C");
 
@@ -209,12 +211,12 @@ public class ClienteView extends javax.swing.JFrame {
                         .addComponent(jLabel2)
                         .addComponent(jLabel4)
                         .addComponent(jLabel5)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jbSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1)
+                    .addComponent(jtxtCedulaAgente)
                     .addComponent(txtNombreCompleto)
                     .addComponent(txtCedula)
                     .addComponent(txtCelular)
@@ -223,7 +225,7 @@ public class ClienteView extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 22, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -252,14 +254,14 @@ public class ClienteView extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtxtCedulaAgente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbCancelar)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jbGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
@@ -267,7 +269,7 @@ public class ClienteView extends javax.swing.JFrame {
                 .addGap(41, 41, 41))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de Agente Comercial"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de Clientes"));
 
         tbListaAgentes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -277,6 +279,7 @@ public class ClienteView extends javax.swing.JFrame {
 
             }
         ));
+        tbListaAgentes.addMouseListener(clienteCtrl);
         jScrollPane1.setViewportView(tbListaAgentes);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -377,8 +380,8 @@ public class ClienteView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jbModificar;
+    private javax.swing.JButton jbEliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -388,7 +391,7 @@ public class ClienteView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jtxtCedulaAgente;
     private javax.swing.JButton jbCancelar;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbSalir;

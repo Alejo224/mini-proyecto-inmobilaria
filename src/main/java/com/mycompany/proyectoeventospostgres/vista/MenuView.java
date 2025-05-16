@@ -93,11 +93,11 @@ public class MenuView extends javax.swing.JFrame {
         jbGestionAgenteComercial.addActionListener(menuCtrl);
 
         jbGestionPropietario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jbGestionPropietario.setText("Gestión Clientes");
+        jbGestionPropietario.setText("Gestión Propietario");
         jbGestionPropietario.addActionListener(menuCtrl);
 
         jbGestionCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jbGestionCliente.setText("Gestión Propietario");
+        jbGestionCliente.setText("Gestión Cliente");
         jbGestionCliente.addActionListener(menuCtrl);
 
         jbSalir.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
