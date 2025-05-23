@@ -23,7 +23,7 @@ public class AgenteModel extends PersonaModel {
 
     public void buscarAgente(JTextField cedula){
 
-        String consulta = "select * from inmobilaria.agente_comercial where cedula=?;";
+        String consulta = "select * from agente_comercial where cedula=?;";
 
         try{
             setCedula(Integer.parseInt(cedula.getText()));
@@ -53,7 +53,7 @@ public class AgenteModel extends PersonaModel {
                         JTextField telefono,
                         JTextField email) throws SQLException, NumberFormatException{
 
-        String consulta = "insert into inmobilaria.agente_comercial (cedula, nombre_completo, telefono, direccion, email) values (?,?,?,?,?);";
+        String consulta = "insert into agente_comercial (cedula, nombre_completo, telefono, direccion, email) values (?,?,?,?,?);";
 
         setCedula(Integer.parseInt(cedula.getText()));
         setNombre(nombre.getText());
@@ -90,7 +90,7 @@ public class AgenteModel extends PersonaModel {
         }
 
         tablaTotalAgentes.setModel(modelo);
-        String consulta = "SELECT * FROM inmobilaria.agente_comercial;";
+        String consulta = "SELECT * FROM agente_comercial;";
 
         try {
             Statement st = conexionBD.establecerConnetion().createStatement();
@@ -147,7 +147,7 @@ public class AgenteModel extends PersonaModel {
         setTelefono(telefono.getText());
         setEmail(email.getText());
 
-        String consulta = "UPDATE inmobilaria.agente_comercial SET cedula =?, nombre_completo = ?, telefono = ?, direccion = ?, email = ? WHERE cedula=?;";
+        String consulta = "UPDATE agente_comercial SET cedula =?, nombre_completo = ?, telefono = ?, direccion = ?, email = ? WHERE cedula=?;";
 
         CallableStatement cs = conexionBD.establecerConnetion().prepareCall(consulta);
 

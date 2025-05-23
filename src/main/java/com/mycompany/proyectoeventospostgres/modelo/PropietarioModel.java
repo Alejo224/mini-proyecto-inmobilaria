@@ -1,3 +1,4 @@
+
 package com.mycompany.proyectoeventospostgres.modelo;
 
 import javax.swing.*;
@@ -29,7 +30,7 @@ public class PropietarioModel extends PersonaModel {
 
     public void buscar(JTextField cedula){
 
-        String consulta = "select * from inmobilaria.propietario where cedula=?;";
+        String consulta = "select * from propietario where cedula=?;";
 
         try{
             setCedula(Integer.parseInt(cedula.getText()));
@@ -60,7 +61,7 @@ public class PropietarioModel extends PersonaModel {
                         JTextField email,
                         JTextField cedulaAgente) throws SQLException, NumberFormatException{
 
-        String consulta = "insert into inmobilaria.propietario (cedula, nombre_completo, telefono, direccion, email, cedula_agente) values (?,?,?,?,?,?);";
+        String consulta = "insert into propietario (cedula, nombre_completo, telefono, direccion, email, cedula_agente) values (?,?,?,?,?,?);";
 
         setCedula(Integer.parseInt(cedula.getText()));
         setNombre(nombre.getText());
@@ -99,7 +100,7 @@ public class PropietarioModel extends PersonaModel {
         }
 
         tablatotal.setModel(modelo);
-        String consulta = "SELECT * FROM inmobilaria.propietario;";
+        String consulta = "SELECT * FROM propietario;";
 
         try {
             Statement st = conexionBD.establecerConnetion().createStatement();
@@ -161,7 +162,7 @@ public class PropietarioModel extends PersonaModel {
         setEmail(email.getText());
         setCedulaAgenteC(Integer.parseInt(cedulaAgente.getText()));
 
-        String consulta = "UPDATE inmobilaria.propietario SET cedula =?, nombre_completo = ?, telefono = ?, direccion = ?, email = ?, cedula_agente = ? WHERE cedula=?;";
+        String consulta = "UPDATE propietario SET cedula =?, nombre_completo = ?, telefono = ?, direccion = ?, email = ?, cedula_agente = ? WHERE cedula=?;";
 
         CallableStatement cs = conexionBD.establecerConnetion().prepareCall(consulta);
 
@@ -181,7 +182,7 @@ public class PropietarioModel extends PersonaModel {
     public void eliminar(JTextField cedula) throws SQLException, NumberFormatException{
         setCedula(Integer.parseInt(cedula.getText()));
 
-        String consulta = "DELETE FROM propietario WHERE propietario.cedula=?";
+        String consulta = "DELETE FROM propietario WHERE cedula=?";
 
         CallableStatement cs = conexionBD.establecerConnetion().prepareCall(consulta);
         cs.setInt(1, getCedula());

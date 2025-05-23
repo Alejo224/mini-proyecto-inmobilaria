@@ -2,6 +2,7 @@ package com.mycompany.proyectoeventospostgres.controlador;
 
 import com.mycompany.proyectoeventospostgres.vista.AgenteView;
 import com.mycompany.proyectoeventospostgres.vista.ClienteView;
+import com.mycompany.proyectoeventospostgres.vista.InmuebleView;
 import com.mycompany.proyectoeventospostgres.vista.MenuView;
 import com.mycompany.proyectoeventospostgres.vista.PropietarioView;
 
@@ -14,6 +15,7 @@ public class MenuCtrl implements ActionListener {
     private AgenteView agenteView = new AgenteView();
     private ClienteView clienteView;
     private PropietarioView propietarioView;
+    private InmuebleView inmuebleView;
 
     public MenuCtrl(MenuView menuView){
         this.menuView = menuView;
@@ -54,9 +56,21 @@ public class MenuCtrl implements ActionListener {
                 propietarioView = new PropietarioView();
             }
             propietarioView.setVisible(true);
-
-
         }
+
+        if (e.getSource().equals(menuView.getJbGestionInmueble())){
+            System.out.println("Ingresando gestion de inmuebles");
+
+            menuView.setVisible(false);
+
+            if (inmuebleView == null){
+                inmuebleView = new InmuebleView();
+            }
+            inmuebleView.setVisible(true);
+        }
+
+
 
     }
 }
+

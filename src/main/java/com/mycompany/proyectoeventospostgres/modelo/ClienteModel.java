@@ -30,7 +30,7 @@ public class ClienteModel extends PersonaModel {
 
     public void buscar(JTextField cedula){
 
-        String consulta = "select * from inmobilaria.cliente where cedula=?;";
+        String consulta = "select * from cliente where cedula=?;";
 
         try{
             setCedula(Integer.parseInt(cedula.getText()));
@@ -61,7 +61,7 @@ public class ClienteModel extends PersonaModel {
                         JTextField email,
                         JTextField cedulaAgente) throws SQLException, NumberFormatException{
 
-        String consulta = "insert into inmobilaria.cliente (cedula, nombre_completo, telefono, direccion, email, cedula_agente) values (?,?,?,?,?,?);";
+        String consulta = "insert into cliente (cedula, nombre_completo, telefono, direccion, email, cedula_agente) values (?,?,?,?,?,?);";
 
         setCedula(Integer.parseInt(cedula.getText()));
         setNombre(nombre.getText());
@@ -100,7 +100,7 @@ public class ClienteModel extends PersonaModel {
         }
 
         tablatotal.setModel(modelo);
-        String consulta = "SELECT * FROM inmobilaria.cliente;";
+        String consulta = "SELECT * FROM cliente;";
 
         try {
             Statement st = conexionBD.establecerConnetion().createStatement();
@@ -162,7 +162,7 @@ public class ClienteModel extends PersonaModel {
         setEmail(email.getText());
         setCedulaAgenteC(Integer.parseInt(cedulaAgente.getText()));
 
-        String consulta = "UPDATE inmobilaria.cliente SET cedula =?, nombre_completo = ?, telefono = ?, direccion = ?, email = ?, cedula_agente = ? WHERE cedula=?;";
+        String consulta = "UPDATE cliente SET cedula =?, nombre_completo = ?, telefono = ?, direccion = ?, email = ?, cedula_agente = ? WHERE cedula=?;";
 
         CallableStatement cs = conexionBD.establecerConnetion().prepareCall(consulta);
 
@@ -182,7 +182,7 @@ public class ClienteModel extends PersonaModel {
     public void eliminar(JTextField cedula) throws SQLException, NumberFormatException{
         setCedula(Integer.parseInt(cedula.getText()));
 
-        String consulta = "DELETE FROM cliente WHERE cliente.cedula=?";
+        String consulta = "DELETE FROM cliente WHERE cliente.cedula=?;";
 
         CallableStatement cs = conexionBD.establecerConnetion().prepareCall(consulta);
         cs.setInt(1, getCedula());
