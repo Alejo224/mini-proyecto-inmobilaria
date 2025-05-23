@@ -18,6 +18,7 @@ public class MenuView extends javax.swing.JFrame {
      * Creates new form MenuInventario
      */
      AgenteView agenteView;
+     
      MenuCtrl menuCtrl;
     
     public MenuView() {
@@ -36,6 +37,10 @@ public class MenuView extends javax.swing.JFrame {
 
     public JButton getJbGestionPropietario() {
         return jbGestionPropietario;
+    }
+    
+    public JButton getJbGestionInmueble() {
+        return jbGestionInmuebles;
     }
 
     public JButton getJbSalir() {
@@ -56,11 +61,12 @@ public class MenuView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jbGestionAgenteComercial = new javax.swing.JButton();
-        jbGestionPropietario = new javax.swing.JButton();
         jbGestionCliente = new javax.swing.JButton();
+        jbGestionPropietario = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
+        jbGestionInmuebles = new javax.swing.JButton();
 
-        setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("MENU PRINCIPAL");
@@ -90,19 +96,23 @@ public class MenuView extends javax.swing.JFrame {
 
         jbGestionAgenteComercial.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jbGestionAgenteComercial.setText("Gestión Agente Comercial");
+        jbGestionAgenteComercial.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         jbGestionAgenteComercial.addActionListener(menuCtrl);
 
-        jbGestionPropietario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jbGestionPropietario.setText("Gestión Clientes");
-        jbGestionPropietario.addActionListener(menuCtrl);
-
         jbGestionCliente.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jbGestionCliente.setText("Gestión Propietario");
+        jbGestionCliente.setText("Gestión Clientes");
         jbGestionCliente.addActionListener(menuCtrl);
+
+        jbGestionPropietario.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jbGestionPropietario.setText("Gestión Propietario");
+        jbGestionPropietario.addActionListener(menuCtrl);
 
         jbSalir.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jbSalir.setText("Salir");
         jbSalir.addActionListener(menuCtrl);
+
+        jbGestionInmuebles.setText("Gestión Inmuebles");
+        jbGestionInmuebles.addActionListener(menuCtrl);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -110,11 +120,12 @@ public class MenuView extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jbGestionAgenteComercial, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbGestionPropietario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbGestionCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
-                    .addComponent(jbSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jbGestionInmuebles, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+                    .addComponent(jbGestionAgenteComercial, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbGestionCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbGestionPropietario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
+                    .addComponent(jbSalir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -123,12 +134,14 @@ public class MenuView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jbGestionAgenteComercial)
                 .addGap(18, 18, 18)
-                .addComponent(jbGestionPropietario)
-                .addGap(18, 18, 18)
                 .addComponent(jbGestionCliente)
                 .addGap(18, 18, 18)
+                .addComponent(jbGestionPropietario)
+                .addGap(18, 18, 18)
+                .addComponent(jbGestionInmuebles, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jbSalir)
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -233,6 +246,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton jbGestionAgenteComercial;
     private javax.swing.JButton jbGestionCliente;
+    private javax.swing.JButton jbGestionInmuebles;
     private javax.swing.JButton jbGestionPropietario;
     private javax.swing.JButton jbSalir;
     // End of variables declaration//GEN-END:variables

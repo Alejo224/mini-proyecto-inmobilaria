@@ -4,8 +4,8 @@
  */
 package com.mycompany.proyectoeventospostgres.vista;
 
-import com.mycompany.proyectoeventospostgres.controlador.ClienteCtrl;
-import com.mycompany.proyectoeventospostgres.modelo.ClienteModel;
+import com.mycompany.proyectoeventospostgres.controlador.InmuebleCtrl;
+import com.mycompany.proyectoeventospostgres.modelo.InmuebleModel;
 
 import javax.swing.*;
 
@@ -13,19 +13,19 @@ import javax.swing.*;
  *
  * @author nico
  */
-public class ClienteView extends javax.swing.JFrame {
+public class InmuebleView extends javax.swing.JFrame {
 
     /**
      * Creates new form VistaMenuPrincipal
      */
-    private ClienteCtrl clienteCtrl;
-    private ClienteModel clienteModel;
+    private InmuebleCtrl inmubleCtrl;
+    private InmuebleModel inmuebleModel;
 
-    public ClienteView() {
-        clienteCtrl = new ClienteCtrl(this);
-        clienteModel = new ClienteModel();
+    public InmuebleView() {
+        inmubleCtrl = new InmuebleCtrl(this); //SE PUSO INMUBLE YA QUE ME ESTABA DANDO PROBLEMAS
+        inmuebleModel = new InmuebleModel();
         initComponents();
-        clienteModel.mostrar(tblista);
+        inmuebleModel.mostrar(tbLista);
 
     }
 
@@ -50,70 +50,58 @@ public class ClienteView extends javax.swing.JFrame {
     }
 
     public JButton getJbCancelar() { return jbCancelar; }
-
-    public JTextField getTxtCedula() {
-        return txtCedula;
-    }
-
-    public JTextField getTxtCelular() {
-        return txtCelular;
-    }
-
-    public JTextField getTxtDireccion() {
-        return txtDireccion;
-    }
-
-    public JTextField getTxtNombreCompleto() {
-        return txtNombreCompleto;
-    }
-    //-------------------------------------------------
-    public JTextField getTxtCedulaAgenteComercial(){
-        return jtxtCedulaAgente;
+    
+    public JButton getJbArrendarInmueble(){
+        return jbArrendarInmueble;
     }
     
-    public void setTxtCedulaAgenteComercial(JTextField txtCedulaAgenteComercial){
-        this.jtxtCedulaAgente = txtCedulaAgenteComercial;
-    }
-    //---------------------------------------------------
-    public void setTxtCedula(JTextField txtCedula) {
-        this.txtCedula = txtCedula;
+    //---------------------------------------------------------------------
+    public JTextField getTxtCodigoInmueble() {
+        return txtCodigoInmueble;
     }
 
-    public void setTxtCelular(JTextField txtCelular) {
-        this.txtCelular = txtCelular;
+    public JTextField getTxtPrecioPropietario() {
+        return txtPrecioPropietario;
     }
 
-    public void setTxtDireccion(JTextField txtDireccion) {
-        this.txtDireccion = txtDireccion;
+    public JTextField getTxtCedulaPropietario() {
+        return txtCedulaPropietario;
     }
 
-    public void setTxtNombreCompleto(JTextField txtNombreCompleto) {
-        this.txtNombreCompleto = txtNombreCompleto;
+    public JTextField getTxtDescripcion() {
+        return txtDescripcion;
+    }
+    
+//--------------------------------------------------
+    public void setTxtCedula(JTextField txtCodigoInmueble) {
+        this.txtCodigoInmueble = txtCodigoInmueble;
     }
 
-    public JTextField getTxtEmail() {
-        return txtEmail;
+    public void setTxtPrecioPropietario(JTextField txtPrecioPropietario) {
+        this.txtPrecioPropietario = txtPrecioPropietario;
     }
 
-    public void setTxtEmail(JTextField txtEmail) {
-        this.txtEmail = txtEmail;
+    public void setTxtCedulaPropietario(JTextField txtCedulaPropietario) {
+        this.txtCedulaPropietario = txtCedulaPropietario;
     }
 
-    public JTable getTbListaAgentes() {
-        return tblista;
+    public void setTxtDescripcion(JTextField txtDescripcion) {
+        this.txtDescripcion = txtDescripcion;
+    }
+    //-------------------------------------------------------------
+
+    public JTable getTbListaInmuebles() {
+        return tbLista;
     }
 
     public void limpiarJtexField(){
 
-        txtNombreCompleto.setText(null);
-        txtCedula.setText(null);
-        txtCelular.setText(null);
-        txtDireccion.setText(null);
-        txtEmail.setText(null);
-        jtxtCedulaAgente.setText(null);
+        txtCedulaPropietario.setText(null);
+        txtCodigoInmueble.setText(null);
+        txtDescripcion.setText(null);
+        txtPrecioPropietario.setText(null);
 
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -128,106 +116,100 @@ public class ClienteView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        txtNombreCompleto = new javax.swing.JTextField();
-        txtCedula = new javax.swing.JTextField();
-        txtCelular = new javax.swing.JTextField();
-        txtDireccion = new javax.swing.JTextField();
+        txtCodigoInmueble = new javax.swing.JTextField();
+        txtPrecioPropietario = new javax.swing.JTextField();
+        txtCedulaPropietario = new javax.swing.JTextField();
+        txtDescripcion = new javax.swing.JTextField();
         jbModificar = new javax.swing.JButton();
         jbEliminar = new javax.swing.JButton();
         jbGuardar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        txtEmail = new javax.swing.JTextField();
         jbCancelar = new javax.swing.JButton();
-        jtxtCedulaAgente = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
+        jbArrendarInmueble = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblista = new javax.swing.JTable();
+        tbLista = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Clientes"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Agente Comercial"));
 
-        jLabel1.setText("Cédula");
+        jLabel1.setText("Precio del propietario");
 
-        jLabel2.setText("Celular");
+        jLabel2.setText("Cédula del propietario");
 
-        jLabel3.setText("Nombre Completo");
+        jLabel3.setText("Código inmueble");
 
-        jLabel4.setText("Dirección");
+        jLabel4.setText("Descripción");
 
-        txtNombreCompleto.addActionListener(new java.awt.event.ActionListener() {
+        txtCodigoInmueble.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNombreCompletoActionPerformed(evt);
+                txtCodigoInmuebleActionPerformed(evt);
             }
         });
 
-        txtDireccion.addActionListener(new java.awt.event.ActionListener() {
+        txtDescripcion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDireccionActionPerformed(evt);
+                txtDescripcionActionPerformed(evt);
             }
         });
 
         jbModificar.setText("Modificar");
-        jbModificar.addActionListener(clienteCtrl);
+        jbModificar.addActionListener(inmubleCtrl);
 
         jbEliminar.setText("Eliminar");
-        jbEliminar.addActionListener(clienteCtrl);
+        jbEliminar.addActionListener(inmubleCtrl);
 
         jbGuardar.setText("Guardar");
-        jbGuardar.addActionListener(clienteCtrl);
-
-        jbSalir.setText("Salir");
-        jbSalir.addActionListener(clienteCtrl);
-
-        jLabel5.setText("Email");
-
-        txtEmail.addActionListener(new java.awt.event.ActionListener() {
+        jbGuardar.addActionListener(inmubleCtrl);
+        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmailActionPerformed(evt);
+                jbGuardarActionPerformed(evt);
             }
         });
 
-        jbCancelar.setText("Cancelar");
-        jbCancelar.addActionListener(clienteCtrl);
+        jbSalir.setText("Salir");
+        jbSalir.addActionListener(inmubleCtrl);
 
-        jLabel6.setText("Cédula del agente C");
+        jbCancelar.setText("Cancelar");
+        jbCancelar.addActionListener(inmubleCtrl);
+
+        jbArrendarInmueble.setText("Arrendar inmueble");
+        jbArrendarInmueble.addActionListener(inmubleCtrl);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(74, 74, 74)
-                .addComponent(jbCancelar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel4)
-                        .addComponent(jLabel5)
-                        .addComponent(jbModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel6))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtxtCedulaAgente)
-                    .addComponent(txtNombreCompleto)
-                    .addComponent(txtCedula)
-                    .addComponent(txtCelular)
-                    .addComponent(txtDireccion)
-                    .addComponent(txtEmail)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel4)
+                            .addComponent(jbModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 22, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtCodigoInmueble)
+                                    .addComponent(txtPrecioPropietario)
+                                    .addComponent(txtCedulaPropietario)
+                                    .addComponent(txtDescripcion))
+                                .addContainerGap())
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jbArrendarInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(20, 20, 20))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jbSalir)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,43 +217,37 @@ public class ClienteView extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
-                    .addComponent(txtNombreCompleto, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCodigoInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPrecioPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCedulaPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addGap(9, 9, 9)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
+                .addGap(106, 106, 106)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jbEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
+                    .addComponent(jbCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtxtCedulaAgente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbCancelar)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jbGuardar, javax.swing.GroupLayout.DEFAULT_SIZE, 31, Short.MAX_VALUE)
-                    .addComponent(jbSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(41, 41, 41))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jbSalir)
+                    .addComponent(jbArrendarInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de Clientes"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de Inmuebles"));
 
-        tblista.setModel(new javax.swing.table.DefaultTableModel(
+        tbLista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -279,8 +255,8 @@ public class ClienteView extends javax.swing.JFrame {
 
             }
         ));
-        tblista.addMouseListener(clienteCtrl);
-        jScrollPane1.setViewportView(tblista);
+        tbLista.addMouseListener(inmubleCtrl);
+        jScrollPane1.setViewportView(tbLista);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -320,26 +296,22 @@ public class ClienteView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel2.getAccessibleContext().setAccessibleName("Lista de Clientes");
+        jPanel2.getAccessibleContext().setAccessibleName("Lista de inmuebles");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNombreCompletoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreCompletoActionPerformed
+    private void txtCodigoInmuebleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoInmuebleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombreCompletoActionPerformed
+    }//GEN-LAST:event_txtCodigoInmuebleActionPerformed
 
-    private void txtDireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDireccionActionPerformed
+    private void txtDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescripcionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDireccionActionPerformed
+    }//GEN-LAST:event_txtDescripcionActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jbGuardarActionPerformed
-
-    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmailActionPerformed
 
     /**
      * @param args the command line arguments
@@ -358,14 +330,18 @@ public class ClienteView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InmuebleView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InmuebleView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InmuebleView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ClienteView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(InmuebleView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -374,32 +350,29 @@ public class ClienteView extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ClienteView().setVisible(true);
+                new InmuebleView().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jbModificar;
-    private javax.swing.JButton jbEliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jtxtCedulaAgente;
+    private javax.swing.JButton jbArrendarInmueble;
     private javax.swing.JButton jbCancelar;
+    private javax.swing.JButton jbEliminar;
     private javax.swing.JButton jbGuardar;
+    private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbSalir;
-    private javax.swing.JTable tblista;
-    private javax.swing.JTextField txtCedula;
-    private javax.swing.JTextField txtCelular;
-    private javax.swing.JTextField txtDireccion;
-    private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtNombreCompleto;
+    private javax.swing.JTable tbLista;
+    private javax.swing.JTextField txtCedulaPropietario;
+    private javax.swing.JTextField txtCodigoInmueble;
+    private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTextField txtPrecioPropietario;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,8 +4,8 @@
  */
 package com.mycompany.proyectoeventospostgres.vista;
 
-import com.mycompany.proyectoeventospostgres.controlador.AgenteCtrl;
-import com.mycompany.proyectoeventospostgres.modelo.AgenteModel;
+import com.mycompany.proyectoeventospostgres.controlador.PropietarioCtrl;
+import com.mycompany.proyectoeventospostgres.modelo.PropietarioModel;
 
 import javax.swing.*;
 
@@ -18,13 +18,14 @@ public class PropietarioView extends javax.swing.JFrame {
     /**
      * Creates new form VistaMenuPrincipal
      */
-    private AgenteCtrl agenteCtrl;
-    private AgenteModel agenteModel;
+    private PropietarioCtrl propietarioCtrl;
+    private PropietarioModel propietaroModel;
+
     public PropietarioView() {
-        //agenteCtrl = new AgenteCtrl(this);
-        //agenteModel = new AgenteModel();
+        propietarioCtrl = new PropietarioCtrl(this);
+        propietaroModel = new PropietarioModel();
         initComponents();
-        agenteModel.mostrarAgentesComerciales(tbListaAgentes);
+        propietaroModel.mostrar(tbLista);
 
     }
 
@@ -98,8 +99,8 @@ public class PropietarioView extends javax.swing.JFrame {
         this.txtEmail = txtEmail;
     }
 
-    public JTable getTbListaAgentes() {
-        return tbListaAgentes;
+    public JTable getTbLista() {
+        return tbLista;
     }
 
     public void limpiarJtexField(){
@@ -109,6 +110,7 @@ public class PropietarioView extends javax.swing.JFrame {
         txtCelular.setText(null);
         txtDireccion.setText(null);
         txtEmail.setText(null);
+        txtCedulaAgenteComercial.setText(null);
 
     }
 
@@ -141,11 +143,11 @@ public class PropietarioView extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbListaAgentes = new javax.swing.JTable();
+        tbLista = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Agente Comercial"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Propietario Inmueble"));
 
         jLabel1.setText("Cédula");
 
@@ -168,17 +170,16 @@ public class PropietarioView extends javax.swing.JFrame {
         });
 
         jbModificar.setText("Modificar");
+        jbModificar.addActionListener(propietarioCtrl);
 
         jbEliminar.setText("Eliminar");
+        jbEliminar.addActionListener(propietarioCtrl);
 
         jbGuardar.setText("Guardar");
-        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbGuardarActionPerformed(evt);
-            }
-        });
+        jbGuardar.addActionListener(propietarioCtrl);
 
         jbSalir.setText("Salir");
+        jbSalir.addActionListener(propietarioCtrl);
 
         jLabel5.setText("Email");
 
@@ -189,6 +190,7 @@ public class PropietarioView extends javax.swing.JFrame {
         });
 
         jbCancelar.setText("Cancelar");
+        jbCancelar.addActionListener(propietarioCtrl);
 
         txtCedulaAgenteComercial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -273,9 +275,9 @@ public class PropietarioView extends javax.swing.JFrame {
                 .addGap(41, 41, 41))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de Agente Comercial"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de los propietarios"));
 
-        tbListaAgentes.setModel(new javax.swing.table.DefaultTableModel(
+        tbLista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -283,7 +285,9 @@ public class PropietarioView extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(tbListaAgentes);
+        tbLista.addMouseListener(propietarioCtrl);
+
+        jScrollPane1.setViewportView(tbLista);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -323,7 +327,7 @@ public class PropietarioView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1.getAccessibleContext().setAccessibleName("Datos Clientes");
+        jPanel1.getAccessibleContext().setAccessibleName("Datos propietario");
         jPanel2.getAccessibleContext().setAccessibleName("Lista de Propietarios");
 
         pack();
@@ -406,7 +410,7 @@ public class PropietarioView extends javax.swing.JFrame {
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbSalir;
-    private javax.swing.JTable tbListaAgentes;
+    private javax.swing.JTable tbLista;
     private javax.swing.JTextField txtCedula;
     private javax.swing.JTextField txtCedulaAgenteComercial;
     private javax.swing.JTextField txtCelular;

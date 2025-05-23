@@ -100,12 +100,13 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jbGestionAgenteComercial" max="32767" attributes="0"/>
-                      <Component id="jbGestionEmpleado" max="32767" attributes="0"/>
-                      <Component id="jbGestionCliente" pref="590" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="jbGestionInmuebles" pref="590" max="32767" attributes="0"/>
+                      <Component id="jbGestionAgenteComercial" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jbGestionCliente" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jbGestionPropietario" alignment="0" pref="590" max="32767" attributes="0"/>
                       <Component id="jbSalir" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="15" max="32767" attributes="0"/>
@@ -118,12 +119,14 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jbGestionAgenteComercial" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jbGestionEmpleado" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jbGestionCliente" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jbGestionPropietario" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Component id="jbGestionInmuebles" min="-2" pref="23" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jbSalir" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="121" max="32767" attributes="0"/>
+                  <EmptySpace pref="80" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -137,25 +140,31 @@
             <Property name="text" type="java.lang.String" value="Gesti&#xf3;n Agente Comercial"/>
             <Property name="horizontalTextPosition" type="int" value="2"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbGestionAgenteComercialActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jbGestionEmpleado">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Gesti&#xf3;n Clientes"/>
-          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jbGestionAgenteComercial.addActionListener(menuCtrl);"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="jbGestionCliente">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="0"/>
             </Property>
+            <Property name="text" type="java.lang.String" value="Gesti&#xf3;n Clientes"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jbGestionCliente.addActionListener(menuCtrl);"/>
+          </AuxValues>
+        </Component>
+        <Component class="javax.swing.JButton" name="jbGestionPropietario">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Gesti&#xf3;n Propietario"/>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jbGestionPropietario.addActionListener(menuCtrl);"/>
+          </AuxValues>
         </Component>
         <Component class="javax.swing.JButton" name="jbSalir">
           <Properties>
@@ -164,6 +173,14 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Salir"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jbGestionInmuebles">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Gesti&#xf3;n Inmuebles"/>
+          </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jbGestionInmuebles.addActionListener(menuCtrl);"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
