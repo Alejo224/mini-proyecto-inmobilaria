@@ -108,7 +108,7 @@ public class MenuView extends javax.swing.JFrame {
         jbGestionPropietario.addActionListener(menuCtrl);
 
         jbSalir.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jbSalir.setText("Salir");
+        jbSalir.setText("Cerrar sesion");
         jbSalir.addActionListener(menuCtrl);
 
         jbGestionInmuebles.setText("Gestión Inmuebles");

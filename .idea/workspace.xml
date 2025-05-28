@@ -5,45 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="04bcac24-740b-4096-8188-94aaf79ed519" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/controlador/ArrendarInmuebleCtrl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/controlador/InmuebleCtrl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/modelo/InmuebleModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/vista/ArrendarInmuebleView.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/vista/ArrendarInmuebleView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/vista/InmuebleView.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/vista/InmuebleView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/controlador/ArrendarInmuebleCtrl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/controlador/InmuebleCtrl.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/modelo/InmuebleModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/ArrendarInmuebleView$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/ArrendarInmuebleView$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/ArrendarInmuebleView$3.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/ArrendarInmuebleView.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/InmuebleView$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/InmuebleView$2.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/InmuebleView$3.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/InmuebleView$4.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/InmuebleView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/controlador/LoguinCtrl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/vista/LoguinView.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/vista/LoguinView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/ProyectoEventosPostgres.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/ProyectoEventosPostgres.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/controlador/MenuCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/controlador/MenuCtrl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/modelo/AgenteModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/modelo/AgenteModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/modelo/ClienteModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/modelo/ClienteModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/modelo/PropietarioModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/modelo/PropietarioModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/vista/MenuView.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/vista/MenuView.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/vista/MenuView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/vista/MenuView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/ProyectoEventosPostgres.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/ProyectoEventosPostgres.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/controlador/MenuCtrl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/controlador/MenuCtrl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/modelo/AgenteModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/modelo/AgenteModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/modelo/ClienteModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/modelo/ClienteModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/modelo/PropietarioModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/modelo/PropietarioModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/ClienteView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/ClienteView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/MenuView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/MenuView$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/MenuView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/MenuView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/PropietarioView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/PropietarioView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,9 +24,21 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 8
-}]]></component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Alejo224&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:Alejo224/mini-proyecto-inmobilaria.git&quot;,
+    &quot;accountId&quot;: &quot;155d8770-11e1-4c43-8a81-61511fdf86bf&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
   <component name="ProjectId" id="2xTXN8TvmaCN9EXii43IDfNaPzm" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -66,13 +49,15 @@
     "Application.ProyectoEventosPostgres.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "alejo224-vista",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "refactor-loguin",
     "last_opened_file_path": "C:/Users/Usuario/Documents/NetBeansProjects/prueba/ProyectoEventosPostgres3",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "vcs.Git",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -129,10 +114,27 @@
       <option name="presentableId" value="Default" />
       <updated>1747963042554</updated>
       <workItem from="1747963071134" duration="3096000" />
+      <workItem from="1748055095809" duration="130000" />
+      <workItem from="1748102208384" duration="2903000" />
+      <workItem from="1748123363467" duration="2742000" />
+      <workItem from="1748191091092" duration="542000" />
+      <workItem from="1748214416339" duration="164000" />
+      <workItem from="1748394785933" duration="1059000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

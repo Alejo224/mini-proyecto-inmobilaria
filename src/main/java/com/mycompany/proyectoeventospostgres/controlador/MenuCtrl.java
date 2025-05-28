@@ -1,11 +1,8 @@
 package com.mycompany.proyectoeventospostgres.controlador;
 
-import com.mycompany.proyectoeventospostgres.vista.AgenteView;
-import com.mycompany.proyectoeventospostgres.vista.ClienteView;
-import com.mycompany.proyectoeventospostgres.vista.InmuebleView;
-import com.mycompany.proyectoeventospostgres.vista.MenuView;
-import com.mycompany.proyectoeventospostgres.vista.PropietarioView;
+import com.mycompany.proyectoeventospostgres.vista.*;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,6 +13,7 @@ public class MenuCtrl implements ActionListener {
     private ClienteView clienteView;
     private PropietarioView propietarioView;
     private InmuebleView inmuebleView;
+    private LoguinView loguinView;
 
     public MenuCtrl(MenuView menuView){
         this.menuView = menuView;
@@ -24,7 +22,11 @@ public class MenuCtrl implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(menuView.getJbSalir())){
-            System.exit(0);
+            JOptionPane.showMessageDialog(null, "Has cerrado sesion");
+            if (loguinView == null) loguinView = new LoguinView();
+
+            loguinView.setVisible(true);
+            menuView.dispose();
         }
 
         if (e.getSource().equals(menuView.getJbGestionAgenteComercial())){
