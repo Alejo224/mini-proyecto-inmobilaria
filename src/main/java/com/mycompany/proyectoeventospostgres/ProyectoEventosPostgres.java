@@ -4,6 +4,7 @@
 
 package com.mycompany.proyectoeventospostgres;
 
+import com.mycompany.proyectoeventospostgres.vista.LoguinView;
 import com.mycompany.proyectoeventospostgres.vista.MenuView;
 
 /**
@@ -13,8 +14,8 @@ import com.mycompany.proyectoeventospostgres.vista.MenuView;
 public class ProyectoEventosPostgres {
 
     public static void main(String[] args) {
-        MenuView menuPrincipalVista = new MenuView();
-        menuPrincipalVista.setVisible(true);
-        System.out.println("hello");
+        LoguinView loguinView = new LoguinView();
+        loguinView.setVisible(true);
+        System.out.println("Ventana Loguin");
     }
 }
