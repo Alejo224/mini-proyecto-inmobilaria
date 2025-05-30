@@ -11,7 +11,7 @@ import java.awt.event.*;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 
-public class PropietarioCtrl implements ActionListener, MouseListener {
+public class PropietarioCtrl implements ActionListener, MouseListener, ItemListener {
     private final PropietarioView propietarioView;
     private MenuView menuView;
     private final PropietarioModel propietarioModel = new PropietarioModel();
@@ -32,7 +32,7 @@ public class PropietarioCtrl implements ActionListener, MouseListener {
                 JTextField direccion = propietarioView.getTxtDireccion();
                 JTextField telefono = propietarioView.getTxtCelular();
                 JTextField email = propietarioView.getTxtEmail();
-                JTextField cedulaAgente = propietarioView.getTxtCedulaAgenteComercial();
+                JComboBox cedulaAgente = propietarioView.getComboBoxAgentes();
 
                 propietarioModel.agregar(cedula, nombre, direccion, telefono,email, cedulaAgente);
                 propietarioView.limpiarJtexField();
@@ -62,7 +62,7 @@ public class PropietarioCtrl implements ActionListener, MouseListener {
                 JTextField direccion = propietarioView.getTxtDireccion();
                 JTextField telefono = propietarioView.getTxtCelular();
                 JTextField email = propietarioView.getTxtEmail();
-                JTextField cedulaAgente = propietarioView.getTxtCedulaAgenteComercial();
+                JComboBox cedulaAgente = propietarioView.getComboBoxAgentes();
 
                 propietarioModel.modificar(cedula,
                         nombre, direccion, telefono, email, cedulaAgente );
@@ -130,7 +130,7 @@ public class PropietarioCtrl implements ActionListener, MouseListener {
             JTextField direccion = propietarioView.getTxtDireccion();
             JTextField telefono = propietarioView.getTxtCelular();
             JTextField email = propietarioView.getTxtEmail();
-            JTextField cedulaAgente = propietarioView.getTxtCedulaAgenteComercial();
+            JComboBox cedulaAgente = propietarioView.getComboBoxAgentes();
 
             propietarioModel.seleccionar(propietarioView.getTbLista(),
                     cedula, nombre, direccion, telefono, email, cedulaAgente);
@@ -157,6 +157,14 @@ public class PropietarioCtrl implements ActionListener, MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
 
+    }
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        if (e.getSource().equals(propietarioView.getComboBoxAgentes())) {
+            String seleccionado =(String) propietarioView.getComboBoxAgentes().getSelectedItem();
+            System.out.println(seleccionado);
+        }
     }
 }
 

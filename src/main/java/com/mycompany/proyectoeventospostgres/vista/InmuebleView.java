@@ -132,7 +132,7 @@ public class InmuebleView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos Agente Comercial"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Datos del inmueble"));
 
         jLabel1.setText("Precio del propietario");
 

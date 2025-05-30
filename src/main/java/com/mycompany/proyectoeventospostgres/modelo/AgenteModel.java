@@ -4,9 +4,12 @@
  */
 package com.mycompany.proyectoeventospostgres.modelo;
 
+import com.mycompany.proyectoeventospostgres.vista.PropietarioView;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
+import java.util.List;
 
 /**
  *
@@ -118,6 +121,43 @@ public class AgenteModel extends PersonaModel {
         }
     }
 
+
+    public void mostrarComboBoxAgente(JComboBox comboBox){
+
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+
+        if (comboBox == null) comboBox = new JComboBox<String>();
+
+        String consulta = "SELECT cedula, nombre_completo FROM agente_comercial;";
+
+        try {
+            Statement st = conexionBD.establecerConnetion().createStatement();
+
+            ResultSet rs= st.executeQuery(consulta);
+
+            while (rs.next()){
+
+                setCedula(rs.getInt("cedula"));
+                setNombre(rs.getString("nombre_completo"));
+
+                String cedula = String.valueOf(getCedula());
+                String nombre = getNombre();
+                System.out.println(cedula);
+
+                //modelo.addElement(new String[]{ cedula, getNombre()});
+                comboBox.addItem(cedula);
+            }
+            System.out.println("modelo " + modelo.toString());
+            //comboBox.setModel(modelo);
+
+        }catch (Exception e){
+
+            JOptionPane.showMessageDialog(null,"Error: "+ e);
+        }finally {
+            conexionBD.ConnectionClosed();
+        }
+    }
+
     public void seleccionar(JTable tablaTotalAgentes, JTextField cedula, JTextField nombre_completo, JTextField direccion, JTextField celular, JTextField correo_electronico ){
         try{
             int fila = tablaTotalAgentes.getSelectedRow();
@@ -181,4 +221,9 @@ public class AgenteModel extends PersonaModel {
             JOptionPane.showMessageDialog(null,"Elimino Correctamente");
         }
     }
+
+    public static void main(String[] args) {
+        PropietarioView obj = new PropietarioView();
+    }
+
 }

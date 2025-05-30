@@ -8,6 +8,8 @@ import com.mycompany.proyectoeventospostgres.modelo.AgenteModel;
 import javax.swing.*;
 import java.awt.event.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class AgenteCtrl implements ActionListener, MouseListener {

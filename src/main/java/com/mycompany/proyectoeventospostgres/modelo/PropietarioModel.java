@@ -59,7 +59,7 @@ public class PropietarioModel extends PersonaModel {
                         JTextField direccion,
                         JTextField telefono,
                         JTextField email,
-                        JTextField cedulaAgente) throws SQLException, NumberFormatException{
+                        JComboBox cedulaAgente) throws SQLException, NumberFormatException{
 
         String consulta = "insert into propietario (cedula, nombre_completo, telefono, direccion, email, cedula_agente) values (?,?,?,?,?,?);";
 
@@ -68,7 +68,7 @@ public class PropietarioModel extends PersonaModel {
         setDireccion(direccion.getText());
         setTelefono(telefono.getText());
         setEmail(email.getText());
-        setCedulaAgenteC(Integer.parseInt(cedulaAgente.getText()));
+        setCedulaAgenteC(Integer.parseInt(cedulaAgente.getSelectedItem().toString()));
 
         CallableStatement cs = conexionBD.establecerConnetion().prepareCall(consulta);
 
@@ -129,8 +129,10 @@ public class PropietarioModel extends PersonaModel {
         }
     }
 
+
+
     public void seleccionar(JTable tablatotal, JTextField cedula, JTextField nombre_completo, JTextField direccion, JTextField celular, JTextField correo_electronico,
-                            JTextField cedulaAgente){
+                            JComboBox cedulaAgente){
         try{
             int fila = tablatotal.getSelectedRow();
             if(fila>=0){
@@ -139,7 +141,8 @@ public class PropietarioModel extends PersonaModel {
                 celular.setText(tablatotal.getValueAt(fila, 2).toString());
                 direccion.setText(tablatotal.getValueAt(fila, 3).toString());
                 correo_electronico.setText(tablatotal.getValueAt(fila, 4).toString());
-                cedulaAgente.setText(tablatotal.getValueAt(fila, 5).toString());
+                cedulaAgente.getSelectedItem();
+
             }
             else{
                 JOptionPane.showMessageDialog(null,"Fila no seleccionada");
@@ -153,14 +156,14 @@ public class PropietarioModel extends PersonaModel {
                           JTextField direccion,
                           JTextField telefono,
                           JTextField email,
-                          JTextField cedulaAgente) throws SQLException, NumberFormatException{
+                          JComboBox cedulaAgente) throws SQLException, NumberFormatException{
 
         setCedula(Integer.parseInt(cedula.getText()));
         setNombre(nombre.getText());
         setDireccion(direccion.getText());
         setTelefono(telefono.getText());
         setEmail(email.getText());
-        setCedulaAgenteC(Integer.parseInt(cedulaAgente.getText()));
+        setCedulaAgenteC(Integer.parseInt(cedulaAgente.getSelectedItem().toString()));
 
         String consulta = "UPDATE propietario SET cedula =?, nombre_completo = ?, telefono = ?, direccion = ?, email = ?, cedula_agente = ? WHERE cedula=?;";
 

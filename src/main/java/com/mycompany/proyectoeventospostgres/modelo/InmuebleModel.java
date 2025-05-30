@@ -6,6 +6,7 @@ package com.mycompany.proyectoeventospostgres.modelo;
 
 import java.math.BigDecimal;
 import java.sql.*;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -23,7 +24,8 @@ public class InmuebleModel {
     private BigDecimal precioCliente;
     private int cedulaPropietario;
     private int cedulaCliente;
-    
+    private LocalDate fecha;
+
     public InmuebleModel(){
     }
     
@@ -34,6 +36,29 @@ public class InmuebleModel {
         this.precioCliente = precio_cliente;
         this.cedulaPropietario = fk_cedula_propietario;
         this.cedulaCliente = fk_cedula_cliente;
+    }
+
+    public InmuebleModel(int codigoInmueble, String descripcion, BigDecimal precioPropietario, BigDecimal precioCliente,
+                         int cedulaPropietario, int cedulaCliente, LocalDate fecha) {
+        this.codigoInmueble = codigoInmueble;
+        this.descripcion = descripcion;
+        this.precioPropietario = precioPropietario;
+        this.precioCliente = precioCliente;
+        this.cedulaPropietario = cedulaPropietario;
+        this.cedulaCliente = cedulaCliente;
+        this.fecha = fecha;
+    }
+
+    public ConexionBD getConexionBD() {
+        return conexionBD;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
     }
 
     public int getCodigoInmueble() {
