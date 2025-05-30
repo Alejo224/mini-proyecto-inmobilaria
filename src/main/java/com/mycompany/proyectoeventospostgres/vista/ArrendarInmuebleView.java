@@ -5,9 +5,10 @@
 package com.mycompany.proyectoeventospostgres.vista;
 
 import com.mycompany.proyectoeventospostgres.controlador.ArrendarInmuebleCtrl;
+import com.mycompany.proyectoeventospostgres.modelo.ClienteModel;
 import com.mycompany.proyectoeventospostgres.modelo.InmuebleModel;
-import javax.swing.JButton;
-import javax.swing.JTextField;
+
+import javax.swing.*;
 
 /**
  *
@@ -16,29 +17,33 @@ import javax.swing.JTextField;
 public class ArrendarInmuebleView extends javax.swing.JFrame {
     private ArrendarInmuebleCtrl arrendarInmuebleCtrl;
     private InmuebleModel inmuebleModel;
+    private ClienteModel clienteModel;
     /**
      * Creates new form ArrendarInmuebleView
      */
     public ArrendarInmuebleView() {
         arrendarInmuebleCtrl = new ArrendarInmuebleCtrl(this); 
         inmuebleModel = new InmuebleModel();
+        clienteModel = new ClienteModel();
         initComponents();
+        clienteModel.mostrarComboBoxCliente(comboBoxCedulaClientes);
+        inmuebleModel.mostrarComboBoxInmueble(comboBoxInmuebles);
     }
     
     public JButton getJbArrendar() {
         return jbArrendar;
     }
     
-    public JTextField getTxtCodigoInmueble() {
-        return txtCodigoInmueble;
+    public JComboBox getComboBoxInmuebles() {
+        return comboBoxInmuebles;
     }
     
     public JTextField getTxtPrecioCliente() {
         return txtPrecioCliente;
     }
     
-    public JTextField getTxtCedulaCliente() {
-        return txtCedulaCliente;
+    public JComboBox getComboBoxCedulaClientes() {
+        return comboBoxCedulaClientes;
     }
     
     public JButton getJbSalir() {
@@ -46,8 +51,8 @@ public class ArrendarInmuebleView extends javax.swing.JFrame {
     }
     
     public void limpiarJtexField(){
-        txtCedulaCliente.setText(null);
-        txtCodigoInmueble.setText(null);
+        comboBoxCedulaClientes.setSelectedItem(null);
+        comboBoxInmuebles.setSelectedItem(null);
         txtPrecioCliente.setText(null);
 
     }
@@ -62,8 +67,8 @@ public class ArrendarInmuebleView extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        txtCodigoInmueble = new javax.swing.JTextField();
-        txtCedulaCliente = new javax.swing.JTextField();
+        comboBoxInmuebles = new javax.swing.JComboBox<String>();
+        comboBoxCedulaClientes = new javax.swing.JComboBox<String>();
         txtPrecioCliente = new javax.swing.JTextField();
         jbArrendar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -73,7 +78,7 @@ public class ArrendarInmuebleView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        txtCodigoInmueble.addActionListener(new java.awt.event.ActionListener() {
+        comboBoxInmuebles.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoInmuebleActionPerformed(evt);
             }
@@ -89,8 +94,11 @@ public class ArrendarInmuebleView extends javax.swing.JFrame {
         jbArrendar.addActionListener(arrendarInmuebleCtrl);
 
         jLabel1.setText("Codigo Inmueble");
+        comboBoxInmuebles.addItemListener(arrendarInmuebleCtrl);
 
         jLabel2.setText("Cedula Cliente");
+
+        comboBoxCedulaClientes.addItemListener(arrendarInmuebleCtrl);
 
         jLabel3.setText("Precio del Arriendo");
 
@@ -115,8 +123,8 @@ public class ArrendarInmuebleView extends javax.swing.JFrame {
                                 .addComponent(jLabel2)))
                         .addGap(30, 30, 30)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtCodigoInmueble)
-                            .addComponent(txtCedulaCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                            .addComponent(comboBoxInmuebles)
+                            .addComponent(comboBoxCedulaClientes, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
                             .addComponent(txtPrecioCliente))))
                 .addContainerGap(36, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -130,10 +138,10 @@ public class ArrendarInmuebleView extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(txtCodigoInmueble, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboBoxInmuebles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCedulaCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxCedulaClientes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -210,8 +218,8 @@ public class ArrendarInmuebleView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton jbArrendar;
     private javax.swing.JButton jbSalir;
-    private javax.swing.JTextField txtCedulaCliente;
-    private javax.swing.JTextField txtCodigoInmueble;
+    private javax.swing.JComboBox<String> comboBoxCedulaClientes;
+    private javax.swing.JComboBox<String> comboBoxInmuebles;
     private javax.swing.JTextField txtPrecioCliente;
     // End of variables declaration//GEN-END:variables
 }

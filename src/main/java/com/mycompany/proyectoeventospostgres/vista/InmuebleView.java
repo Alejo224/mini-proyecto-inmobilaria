@@ -6,6 +6,7 @@ package com.mycompany.proyectoeventospostgres.vista;
 
 import com.mycompany.proyectoeventospostgres.controlador.InmuebleCtrl;
 import com.mycompany.proyectoeventospostgres.modelo.InmuebleModel;
+import com.mycompany.proyectoeventospostgres.modelo.PropietarioModel;
 
 import javax.swing.*;
 
@@ -20,12 +21,15 @@ public class InmuebleView extends javax.swing.JFrame {
      */
     private InmuebleCtrl inmubleCtrl;
     private InmuebleModel inmuebleModel;
+    private PropietarioModel propietarioModel;
 
     public InmuebleView() {
         inmubleCtrl = new InmuebleCtrl(this); //SE PUSO INMUBLE YA QUE ME ESTABA DANDO PROBLEMAS
         inmuebleModel = new InmuebleModel();
+        propietarioModel = new PropietarioModel();
         initComponents();
         inmuebleModel.mostrar(tbLista);
+        propietarioModel.mostrarComboBoxAgente(comboBoxPropietarios);
 
     }
 
@@ -64,8 +68,12 @@ public class InmuebleView extends javax.swing.JFrame {
         return txtPrecioPropietario;
     }
 
-    public JTextField getTxtCedulaPropietario() {
-        return txtCedulaPropietario;
+    public JComboBox<String> getComboBoxPropietarios() {
+        return comboBoxPropietarios;
+    }
+
+    public void setComboBoxPropietarios(JComboBox<String> comboBoxPropietarios) {
+        this.comboBoxPropietarios = comboBoxPropietarios;
     }
 
     public JTextField getTxtDescripcion() {
@@ -81,9 +89,7 @@ public class InmuebleView extends javax.swing.JFrame {
         this.txtPrecioPropietario = txtPrecioPropietario;
     }
 
-    public void setTxtCedulaPropietario(JTextField txtCedulaPropietario) {
-        this.txtCedulaPropietario = txtCedulaPropietario;
-    }
+
 
     public void setTxtDescripcion(JTextField txtDescripcion) {
         this.txtDescripcion = txtDescripcion;
@@ -96,7 +102,7 @@ public class InmuebleView extends javax.swing.JFrame {
 
     public void limpiarJtexField(){
 
-        txtCedulaPropietario.setText(null);
+        comboBoxPropietarios.setSelectedItem(null);
         txtCodigoInmueble.setText(null);
         txtDescripcion.setText(null);
         txtPrecioPropietario.setText(null);
@@ -118,7 +124,7 @@ public class InmuebleView extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtCodigoInmueble = new javax.swing.JTextField();
         txtPrecioPropietario = new javax.swing.JTextField();
-        txtCedulaPropietario = new javax.swing.JTextField();
+        comboBoxPropietarios = new javax.swing.JComboBox<String>();
         txtDescripcion = new javax.swing.JTextField();
         jbModificar = new javax.swing.JButton();
         jbEliminar = new javax.swing.JButton();
@@ -177,6 +183,9 @@ public class InmuebleView extends javax.swing.JFrame {
         jbArrendarInmueble.setText("Arrendar inmueble");
         jbArrendarInmueble.addActionListener(inmubleCtrl);
 
+        comboBoxPropietarios.setMaximumRowCount(5);
+        comboBoxPropietarios.addItemListener(inmubleCtrl);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -198,7 +207,7 @@ public class InmuebleView extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtCodigoInmueble)
                                     .addComponent(txtPrecioPropietario)
-                                    .addComponent(txtCedulaPropietario)
+                                    .addComponent(comboBoxPropietarios)
                                     .addComponent(txtDescripcion))
                                 .addContainerGap())
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -224,7 +233,7 @@ public class InmuebleView extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCedulaPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxPropietarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -370,7 +379,7 @@ public class InmuebleView extends javax.swing.JFrame {
     private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbSalir;
     private javax.swing.JTable tbLista;
-    private javax.swing.JTextField txtCedulaPropietario;
+    private javax.swing.JComboBox<String> comboBoxPropietarios;
     private javax.swing.JTextField txtCodigoInmueble;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtPrecioPropietario;

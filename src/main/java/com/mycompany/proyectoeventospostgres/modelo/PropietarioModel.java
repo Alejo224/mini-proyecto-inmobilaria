@@ -141,7 +141,7 @@ public class PropietarioModel extends PersonaModel {
                 celular.setText(tablatotal.getValueAt(fila, 2).toString());
                 direccion.setText(tablatotal.getValueAt(fila, 3).toString());
                 correo_electronico.setText(tablatotal.getValueAt(fila, 4).toString());
-                cedulaAgente.getSelectedItem();
+                cedulaAgente.setSelectedItem(tablatotal.getValueAt(fila, 5).toString());
 
             }
             else{
@@ -196,6 +196,38 @@ public class PropietarioModel extends PersonaModel {
         if (respuesta == 0){
             cs.execute();
             JOptionPane.showMessageDialog(null,"Elimino Correctamente");
+        }
+    }
+
+    public void mostrarComboBoxAgente(JComboBox comboBox){
+
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+
+        if (comboBox == null) comboBox = new JComboBox<String>();
+
+        String consulta = "SELECT cedula, nombre_completo FROM propietario;";
+
+        try {
+            Statement st = conexionBD.establecerConnetion().createStatement();
+
+            ResultSet rs= st.executeQuery(consulta);
+
+            while (rs.next()){
+
+                setCedula(rs.getInt("cedula"));
+                setNombre(rs.getString("nombre_completo"));
+
+                String cedula = String.valueOf(getCedula());
+                String nombre = getNombre();
+                System.out.println(cedula);
+
+                comboBox.addItem(cedula);
+            }
+        }catch (Exception e){
+
+            JOptionPane.showMessageDialog(null,"Error: "+ e);
+        }finally {
+            conexionBD.ConnectionClosed();
         }
     }
 }

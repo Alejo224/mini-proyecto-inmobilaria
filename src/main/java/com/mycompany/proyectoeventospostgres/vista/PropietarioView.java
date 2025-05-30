@@ -118,7 +118,7 @@ public class PropietarioView extends javax.swing.JFrame {
         txtCelular.setText(null);
         txtDireccion.setText(null);
         txtEmail.setText(null);
-        //txtCedulaAgenteComercial.setText(null);
+        comboBoxAgentes.setSelectedItem(null);
 
     }
 

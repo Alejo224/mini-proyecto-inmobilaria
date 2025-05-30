@@ -8,19 +8,20 @@ import com.mycompany.proyectoeventospostgres.modelo.ConexionBD;
 import com.mycompany.proyectoeventospostgres.modelo.InmuebleModel;
 import com.mycompany.proyectoeventospostgres.vista.ArrendarInmuebleView;
 import com.mycompany.proyectoeventospostgres.vista.InmuebleView;
-import com.mycompany.proyectoeventospostgres.vista.MenuView;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 /**
  *
  * @author nico
  */
-public class ArrendarInmuebleCtrl implements ActionListener {
+public class ArrendarInmuebleCtrl implements ActionListener, ItemListener {
     private final ArrendarInmuebleView arrendarInmuebleView ;
     private final InmuebleModel inmuebleModel = new InmuebleModel();
     private InmuebleView inmuebleView;
@@ -36,9 +37,9 @@ public class ArrendarInmuebleCtrl implements ActionListener {
             System.out.println("Boton arrendar");
 
             try{
-                JTextField codigo_inmueble = arrendarInmuebleView.getTxtCodigoInmueble();
+                JComboBox codigo_inmueble = arrendarInmuebleView.getComboBoxInmuebles();
                 JTextField precio_cliente = arrendarInmuebleView.getTxtPrecioCliente();
-                JTextField cedula_cliente = arrendarInmuebleView.getTxtCedulaCliente();
+                JComboBox cedula_cliente = arrendarInmuebleView.getComboBoxCedulaClientes();
 
                 inmuebleModel.arrendarInmueble(codigo_inmueble, cedula_cliente,
                         precio_cliente);
@@ -67,5 +68,19 @@ public class ArrendarInmuebleCtrl implements ActionListener {
             arrendarInmuebleView.dispose();
         }
         
+    }
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        if (e.getSource().equals(arrendarInmuebleView.getComboBoxInmuebles())){
+            String seleccionado = (String) arrendarInmuebleView.getComboBoxInmuebles().getSelectedItem();
+            System.out.println(seleccionado);
+        }
+        if (e.getSource().equals(arrendarInmuebleView.getComboBoxCedulaClientes())){
+            String seleccionado = (String) arrendarInmuebleView.getComboBoxCedulaClientes().getSelectedItem();
+            System.out.println(seleccionado);
+        }
+
+
     }
 }
