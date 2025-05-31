@@ -5,6 +5,7 @@
 package com.mycompany.proyectoeventospostgres.vista;
 
 import com.mycompany.proyectoeventospostgres.controlador.PropietarioCtrl;
+import com.mycompany.proyectoeventospostgres.modelo.AgenteModel;
 import com.mycompany.proyectoeventospostgres.modelo.PropietarioModel;
 
 import javax.swing.*;
@@ -20,12 +21,15 @@ public class PropietarioView extends javax.swing.JFrame {
      */
     private PropietarioCtrl propietarioCtrl;
     private PropietarioModel propietaroModel;
+    private AgenteModel agenteModel;
 
     public PropietarioView() {
         propietarioCtrl = new PropietarioCtrl(this);
         propietaroModel = new PropietarioModel();
+        agenteModel = new AgenteModel();
         initComponents();
         propietaroModel.mostrar(tbLista);
+        agenteModel.mostrarComboBoxAgente(comboBoxAgentes);
 
     }
 
@@ -67,13 +71,16 @@ public class PropietarioView extends javax.swing.JFrame {
         return txtNombreCompleto;
     }
     //-------------------------------------------------
+    /*
     public JTextField getTxtCedulaAgenteComercial(){
         return txtCedulaAgenteComercial;
     }
-    
+
     public void setTxtCedulaAgenteComercial(JTextField txtCedulaAgenteComercial){
         this.txtCedulaAgenteComercial = txtCedulaAgenteComercial;
     }
+
+     */
     //---------------------------------------------------
     public void setTxtCedula(JTextField txtCedula) {
         this.txtCedula = txtCedula;
@@ -103,6 +110,7 @@ public class PropietarioView extends javax.swing.JFrame {
         return tbLista;
     }
 
+
     public void limpiarJtexField(){
 
         txtNombreCompleto.setText(null);
@@ -110,8 +118,16 @@ public class PropietarioView extends javax.swing.JFrame {
         txtCelular.setText(null);
         txtDireccion.setText(null);
         txtEmail.setText(null);
-        txtCedulaAgenteComercial.setText(null);
+        comboBoxAgentes.setSelectedItem(null);
 
+    }
+
+    public JComboBox<String> getComboBoxAgentes() {
+        return comboBoxAgentes;
+    }
+
+    public void setComboBoxAgentes(JComboBox<String> comboBoxAgentes) {
+        this.comboBoxAgentes = comboBoxAgentes;
     }
 
     /**
@@ -139,8 +155,8 @@ public class PropietarioView extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         jbCancelar = new javax.swing.JButton();
-        txtCedulaAgenteComercial = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        comboBoxAgentes = new javax.swing.JComboBox<>();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbLista = new javax.swing.JTable();
@@ -192,12 +208,16 @@ public class PropietarioView extends javax.swing.JFrame {
         jbCancelar.setText("Cancelar");
         jbCancelar.addActionListener(propietarioCtrl);
 
+        //comboBoxAgentes.addActionListener(propietarioCtrl);
+        comboBoxAgentes.setMaximumRowCount(5);
+        comboBoxAgentes.addItemListener(propietarioCtrl);
+        /*
         txtCedulaAgenteComercial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCedulaAgenteComercialActionPerformed(evt);
             }
         });
-
+         */
         jLabel6.setText("Cédula del agente C");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -222,7 +242,6 @@ public class PropietarioView extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCedulaAgenteComercial)
                     .addComponent(txtNombreCompleto)
                     .addComponent(txtCedula)
                     .addComponent(txtCelular)
@@ -232,7 +251,8 @@ public class PropietarioView extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jbEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 22, Short.MAX_VALUE)))
+                        .addGap(0, 22, Short.MAX_VALUE))
+                    .addComponent(comboBoxAgentes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -259,9 +279,9 @@ public class PropietarioView extends javax.swing.JFrame {
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCedulaAgenteComercial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(comboBoxAgentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbCancelar)
                 .addGap(18, 18, 18)
@@ -327,7 +347,7 @@ public class PropietarioView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel1.getAccessibleContext().setAccessibleName("Datos propietario");
+        jPanel1.getAccessibleContext().setAccessibleName("Datos Clientes");
         jPanel2.getAccessibleContext().setAccessibleName("Lista de Propietarios");
 
         pack();
@@ -348,10 +368,6 @@ public class PropietarioView extends javax.swing.JFrame {
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailActionPerformed
-
-    private void txtCedulaAgenteComercialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaAgenteComercialActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedulaAgenteComercialActionPerformed
 
     /**
      * @param args the command line arguments
@@ -396,6 +412,7 @@ public class PropietarioView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> comboBoxAgentes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -412,7 +429,6 @@ public class PropietarioView extends javax.swing.JFrame {
     private javax.swing.JButton jbSalir;
     private javax.swing.JTable tbLista;
     private javax.swing.JTextField txtCedula;
-    private javax.swing.JTextField txtCedulaAgenteComercial;
     private javax.swing.JTextField txtCelular;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtEmail;

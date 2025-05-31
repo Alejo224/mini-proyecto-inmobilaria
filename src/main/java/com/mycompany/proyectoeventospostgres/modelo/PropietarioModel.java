@@ -59,7 +59,7 @@ public class PropietarioModel extends PersonaModel {
                         JTextField direccion,
                         JTextField telefono,
                         JTextField email,
-                        JTextField cedulaAgente) throws SQLException, NumberFormatException{
+                        JComboBox cedulaAgente) throws SQLException, NumberFormatException{
 
         String consulta = "insert into propietario (cedula, nombre_completo, telefono, direccion, email, cedula_agente) values (?,?,?,?,?,?);";
 
@@ -68,7 +68,7 @@ public class PropietarioModel extends PersonaModel {
         setDireccion(direccion.getText());
         setTelefono(telefono.getText());
         setEmail(email.getText());
-        setCedulaAgenteC(Integer.parseInt(cedulaAgente.getText()));
+        setCedulaAgenteC(Integer.parseInt(cedulaAgente.getSelectedItem().toString()));
 
         CallableStatement cs = conexionBD.establecerConnetion().prepareCall(consulta);
 
@@ -129,8 +129,10 @@ public class PropietarioModel extends PersonaModel {
         }
     }
 
+
+
     public void seleccionar(JTable tablatotal, JTextField cedula, JTextField nombre_completo, JTextField direccion, JTextField celular, JTextField correo_electronico,
-                            JTextField cedulaAgente){
+                            JComboBox cedulaAgente){
         try{
             int fila = tablatotal.getSelectedRow();
             if(fila>=0){
@@ -139,7 +141,8 @@ public class PropietarioModel extends PersonaModel {
                 celular.setText(tablatotal.getValueAt(fila, 2).toString());
                 direccion.setText(tablatotal.getValueAt(fila, 3).toString());
                 correo_electronico.setText(tablatotal.getValueAt(fila, 4).toString());
-                cedulaAgente.setText(tablatotal.getValueAt(fila, 5).toString());
+                cedulaAgente.setSelectedItem(tablatotal.getValueAt(fila, 5).toString());
+
             }
             else{
                 JOptionPane.showMessageDialog(null,"Fila no seleccionada");
@@ -153,14 +156,14 @@ public class PropietarioModel extends PersonaModel {
                           JTextField direccion,
                           JTextField telefono,
                           JTextField email,
-                          JTextField cedulaAgente) throws SQLException, NumberFormatException{
+                          JComboBox cedulaAgente) throws SQLException, NumberFormatException{
 
         setCedula(Integer.parseInt(cedula.getText()));
         setNombre(nombre.getText());
         setDireccion(direccion.getText());
         setTelefono(telefono.getText());
         setEmail(email.getText());
-        setCedulaAgenteC(Integer.parseInt(cedulaAgente.getText()));
+        setCedulaAgenteC(Integer.parseInt(cedulaAgente.getSelectedItem().toString()));
 
         String consulta = "UPDATE propietario SET cedula =?, nombre_completo = ?, telefono = ?, direccion = ?, email = ?, cedula_agente = ? WHERE cedula=?;";
 
@@ -193,6 +196,38 @@ public class PropietarioModel extends PersonaModel {
         if (respuesta == 0){
             cs.execute();
             JOptionPane.showMessageDialog(null,"Elimino Correctamente");
+        }
+    }
+
+    public void mostrarComboBoxAgente(JComboBox comboBox){
+
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+
+        if (comboBox == null) comboBox = new JComboBox<String>();
+
+        String consulta = "SELECT cedula, nombre_completo FROM propietario;";
+
+        try {
+            Statement st = conexionBD.establecerConnetion().createStatement();
+
+            ResultSet rs= st.executeQuery(consulta);
+
+            while (rs.next()){
+
+                setCedula(rs.getInt("cedula"));
+                setNombre(rs.getString("nombre_completo"));
+
+                String cedula = String.valueOf(getCedula());
+                String nombre = getNombre();
+                System.out.println(cedula);
+
+                comboBox.addItem(cedula);
+            }
+        }catch (Exception e){
+
+            JOptionPane.showMessageDialog(null,"Error: "+ e);
+        }finally {
+            conexionBD.ConnectionClosed();
         }
     }
 }

@@ -12,18 +12,17 @@ import com.mycompany.proyectoeventospostgres.vista.ArrendarInmuebleView;
 import java.awt.event.*;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 /**
  *
  * @author nico
  */
-public class InmuebleCtrl implements ActionListener, MouseListener{
+public class InmuebleCtrl implements ActionListener, MouseListener, ItemListener{
 
     private final InmuebleView inmuebleView;
     private MenuView menuView;
-    private final InmuebleModel inmuebleModel = new InmuebleModel();
+    private InmuebleModel inmuebleModel = new InmuebleModel();
     private final ConexionBD conexionBD = new ConexionBD();
     private ArrendarInmuebleView arrendarInmueble;
     
@@ -40,7 +39,7 @@ public class InmuebleCtrl implements ActionListener, MouseListener{
                 JTextField codigo_inmueble = inmuebleView.getTxtCodigoInmueble();
                 JTextField descripcion = inmuebleView.getTxtDescripcion();
                 JTextField precio_propietario = inmuebleView.getTxtPrecioPropietario();
-                JTextField fk_cedula_propietario = inmuebleView.getTxtCedulaPropietario();
+                JComboBox fk_cedula_propietario = inmuebleView.getComboBoxPropietarios();
 
                 inmuebleModel.agregar(codigo_inmueble, descripcion, precio_propietario, fk_cedula_propietario);
                 inmuebleView.limpiarJtexField();
@@ -69,13 +68,13 @@ public class InmuebleCtrl implements ActionListener, MouseListener{
                 JTextField codigo_inmueble = inmuebleView.getTxtCodigoInmueble();
                 JTextField descripcion = inmuebleView.getTxtDescripcion();
                 JTextField precio_propietario = inmuebleView.getTxtPrecioPropietario();
-                JTextField fk_cedula_propietario = inmuebleView.getTxtCedulaPropietario();
+                JComboBox fk_cedula_propietario = inmuebleView.getComboBoxPropietarios();
 
                 inmuebleModel.modificar(codigo_inmueble,
                         descripcion, precio_propietario, fk_cedula_propietario);
 
                 inmuebleView.limpiarJtexField();
-                inmuebleView.getTxtCedulaPropietario().setEditable(true);
+                inmuebleView.getComboBoxPropietarios().setEditable(true);
                 inmuebleView.getTbListaInmuebles().clearSelection();
                 inmuebleModel.mostrar(inmuebleView.getTbListaInmuebles());
             }catch (SQLIntegrityConstraintViolationException repit){
@@ -146,7 +145,7 @@ public class InmuebleCtrl implements ActionListener, MouseListener{
                 JTextField codigo_inmueble = inmuebleView.getTxtCodigoInmueble();
                 JTextField descripcion = inmuebleView.getTxtDescripcion();
                 JTextField precio_propietario = inmuebleView.getTxtPrecioPropietario();
-                JTextField fk_cedula_propietario = inmuebleView.getTxtCedulaPropietario();
+                JComboBox fk_cedula_propietario = inmuebleView.getComboBoxPropietarios();
 
             inmuebleModel.seleccionar(inmuebleView.getTbListaInmuebles(),
                     codigo_inmueble, descripcion, precio_propietario, fk_cedula_propietario);
@@ -173,5 +172,13 @@ public class InmuebleCtrl implements ActionListener, MouseListener{
     @Override
     public void mouseExited(MouseEvent e) {
 
+    }
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        if (e.getSource().equals(inmuebleView.getComboBoxPropietarios())) {
+            String seleccionado =(String) inmuebleView.getComboBoxPropietarios().getSelectedItem();
+            System.out.println(seleccionado);
+        }
     }
 }

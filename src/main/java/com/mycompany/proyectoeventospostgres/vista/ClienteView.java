@@ -5,6 +5,7 @@
 package com.mycompany.proyectoeventospostgres.vista;
 
 import com.mycompany.proyectoeventospostgres.controlador.ClienteCtrl;
+import com.mycompany.proyectoeventospostgres.modelo.AgenteModel;
 import com.mycompany.proyectoeventospostgres.modelo.ClienteModel;
 
 import javax.swing.*;
@@ -20,18 +21,29 @@ public class ClienteView extends javax.swing.JFrame {
      */
     private ClienteCtrl clienteCtrl;
     private ClienteModel clienteModel;
+    private AgenteModel agenteModel;
 
     public ClienteView() {
         clienteCtrl = new ClienteCtrl(this);
         clienteModel = new ClienteModel();
+        agenteModel = new AgenteModel();
         initComponents();
         clienteModel.mostrar(tblista);
+        agenteModel.mostrarComboBoxAgente(comboBoxAgentes);
 
     }
 
     /*
          setters and getters
     */
+
+    public JComboBox<String> getComboBoxAgentes() {
+        return comboBoxAgentes;
+    }
+
+    public void setComboBoxAgentes(JComboBox<String> comboBoxAgentes) {
+        this.comboBoxAgentes = comboBoxAgentes;
+    }
 
     public JButton getJbEliminar() {
         return jbEliminar;
@@ -67,13 +79,7 @@ public class ClienteView extends javax.swing.JFrame {
         return txtNombreCompleto;
     }
     //-------------------------------------------------
-    public JTextField getTxtCedulaAgenteComercial(){
-        return jtxtCedulaAgente;
-    }
-    
-    public void setTxtCedulaAgenteComercial(JTextField txtCedulaAgenteComercial){
-        this.jtxtCedulaAgente = txtCedulaAgenteComercial;
-    }
+
     //---------------------------------------------------
     public void setTxtCedula(JTextField txtCedula) {
         this.txtCedula = txtCedula;
@@ -110,7 +116,7 @@ public class ClienteView extends javax.swing.JFrame {
         txtCelular.setText(null);
         txtDireccion.setText(null);
         txtEmail.setText(null);
-        jtxtCedulaAgente.setText(null);
+        comboBoxAgentes.setSelectedItem(null);
 
     }
 
@@ -139,7 +145,7 @@ public class ClienteView extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         jbCancelar = new javax.swing.JButton();
-        jtxtCedulaAgente = new javax.swing.JTextField();
+        comboBoxAgentes = new javax.swing.JComboBox<String>();
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -194,6 +200,9 @@ public class ClienteView extends javax.swing.JFrame {
 
         jLabel6.setText("Cédula del agente C");
 
+        comboBoxAgentes.setMaximumRowCount(5);
+        comboBoxAgentes.addItemListener(clienteCtrl);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -216,7 +225,7 @@ public class ClienteView extends javax.swing.JFrame {
                     .addComponent(jLabel6))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtxtCedulaAgente)
+                    .addComponent(comboBoxAgentes)
                     .addComponent(txtNombreCompleto)
                     .addComponent(txtCedula)
                     .addComponent(txtCelular)
@@ -254,7 +263,7 @@ public class ClienteView extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtxtCedulaAgente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(comboBoxAgentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbCancelar)
@@ -391,7 +400,7 @@ public class ClienteView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jtxtCedulaAgente;
+    private javax.swing.JComboBox<String> comboBoxAgentes;
     private javax.swing.JButton jbCancelar;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbSalir;

@@ -30,7 +30,7 @@ public class ConexionBD {
             Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(cadena, user, password);
 
-            JOptionPane.showMessageDialog(null, "se conectó correctamente a la base de datos");
+            System.out.println("se conectó correctamente a la base de datos");
 
         }catch (Exception e){
             JOptionPane.showMessageDialog(null, "Error" + e);
@@ -44,7 +44,7 @@ public class ConexionBD {
         try {
             if (connection != null && !connection.isClosed()) {
                 connection.close();
-                JOptionPane.showMessageDialog(null, "La conexión fue cerrada");
+                System.out.println("La conexión fue cerrada");
             }
 
         } catch (SQLException e) {

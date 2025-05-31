@@ -7,14 +7,11 @@ import com.mycompany.proyectoeventospostgres.vista.ClienteView;
 import com.mycompany.proyectoeventospostgres.vista.MenuView;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 
-public class ClienteCtrl implements ActionListener, MouseListener {
+public class ClienteCtrl implements ActionListener, MouseListener, ItemListener {
     private final ClienteView clienteView;
     private MenuView menuView;
     private final ClienteModel clienteModel = new ClienteModel();
@@ -35,7 +32,7 @@ public class ClienteCtrl implements ActionListener, MouseListener {
                 JTextField direccion = clienteView.getTxtDireccion();
                 JTextField telefono = clienteView.getTxtCelular();
                 JTextField email = clienteView.getTxtEmail();
-                JTextField cedulaAgente = clienteView.getTxtCedulaAgenteComercial();
+                JComboBox cedulaAgente = clienteView.getComboBoxAgentes();
 
                 clienteModel.agregar(cedula, nombre, direccion, telefono,email, cedulaAgente);
                 clienteView.limpiarJtexField();
@@ -65,7 +62,7 @@ public class ClienteCtrl implements ActionListener, MouseListener {
                 JTextField direccion = clienteView.getTxtDireccion();
                 JTextField telefono = clienteView.getTxtCelular();
                 JTextField email = clienteView.getTxtEmail();
-                JTextField cedulaAgente = clienteView.getTxtCedulaAgenteComercial();
+                JComboBox cedulaAgente = clienteView.getComboBoxAgentes();
 
                 clienteModel.modificar(cedula,
                         nombre, direccion, telefono, email, cedulaAgente );
@@ -133,7 +130,7 @@ public class ClienteCtrl implements ActionListener, MouseListener {
             JTextField direccion = clienteView.getTxtDireccion();
             JTextField telefono = clienteView.getTxtCelular();
             JTextField email = clienteView.getTxtEmail();
-            JTextField cedulaAgente = clienteView.getTxtCedulaAgenteComercial();
+            JComboBox cedulaAgente = clienteView.getComboBoxAgentes();
 
             clienteModel.seleccionar(clienteView.getTbListaAgentes(),
                     cedula, nombre, direccion, telefono, email, cedulaAgente);
@@ -160,6 +157,14 @@ public class ClienteCtrl implements ActionListener, MouseListener {
     @Override
     public void mouseExited(MouseEvent e) {
 
+    }
+
+    @Override
+    public void itemStateChanged(ItemEvent e) {
+        if (e.getSource().equals(clienteView.getComboBoxAgentes())) {
+            String seleccionado =(String) clienteView.getComboBoxAgentes().getSelectedItem();
+            System.out.println(seleccionado);
+        }
     }
 }
 

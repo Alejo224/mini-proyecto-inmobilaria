@@ -20,7 +20,7 @@ public class LoguinCtrl implements ActionListener {
     private LoguinView loguinView ;
     private MenuView menuView;
     private String password = "univalle";
-    private String email = "jhonWick@gmail.com";
+    private String email = "admin@gmail.com";
 
 
     public LoguinCtrl(LoguinView loguinView){

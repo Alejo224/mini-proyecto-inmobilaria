@@ -6,9 +6,8 @@ package com.mycompany.proyectoeventospostgres.modelo;
 
 import java.math.BigDecimal;
 import java.sql.*;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.JTextField;
+import java.time.LocalDate;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -23,7 +22,8 @@ public class InmuebleModel {
     private BigDecimal precioCliente;
     private int cedulaPropietario;
     private int cedulaCliente;
-    
+    private LocalDate fecha;
+
     public InmuebleModel(){
     }
     
@@ -34,6 +34,29 @@ public class InmuebleModel {
         this.precioCliente = precio_cliente;
         this.cedulaPropietario = fk_cedula_propietario;
         this.cedulaCliente = fk_cedula_cliente;
+    }
+
+    public InmuebleModel(int codigoInmueble, String descripcion, BigDecimal precioPropietario, BigDecimal precioCliente,
+                         int cedulaPropietario, int cedulaCliente, LocalDate fecha) {
+        this.codigoInmueble = codigoInmueble;
+        this.descripcion = descripcion;
+        this.precioPropietario = precioPropietario;
+        this.precioCliente = precioCliente;
+        this.cedulaPropietario = cedulaPropietario;
+        this.cedulaCliente = cedulaCliente;
+        this.fecha = fecha;
+    }
+
+    public ConexionBD getConexionBD() {
+        return conexionBD;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
     }
 
     public int getCodigoInmueble() {
@@ -134,14 +157,14 @@ public class InmuebleModel {
     public void agregar(JTextField codigo_inmueble,
                         JTextField descripcion,
                         JTextField precio_propietario,
-                        JTextField fk_cedula_propietario ) throws SQLException, NumberFormatException{
+                        JComboBox fk_cedula_propietario ) throws SQLException, NumberFormatException{
 
         String consulta = "insert into inmueble (codigo_inmueble,descripcion, precio_propietario, fk_cedula_propietario) values (?,?,?,?);";
         System.out.println("entro a crear");
         setCodigoInmueble(Integer.parseInt(codigo_inmueble.getText()));
         setDescripcion(descripcion.getText());
         setPrecioPropietario(new BigDecimal(precio_propietario.getText()));
-        setCedulaPropietario(Integer.parseInt(fk_cedula_propietario.getText()));
+        setCedulaPropietario(Integer.parseInt(fk_cedula_propietario.getSelectedItem().toString()));
 
         CallableStatement cs = conexionBD.establecerConnetion().prepareCall(consulta);
 
@@ -158,14 +181,14 @@ public class InmuebleModel {
     public void seleccionar(JTable tabla_inmueble, JTextField codigo_inmueble,
                         JTextField descripcion,
                         JTextField precio_propietario,
-                        JTextField fk_cedula_propietario){
+                        JComboBox fk_cedula_propietario){
         try{
             int fila = tabla_inmueble.getSelectedRow();
             if(fila>=0){
                 codigo_inmueble.setText(tabla_inmueble.getValueAt(fila, 0).toString());
                 descripcion.setText(tabla_inmueble.getValueAt(fila, 1).toString());
                 precio_propietario.setText(tabla_inmueble.getValueAt(fila, 2).toString());
-                fk_cedula_propietario.setText(tabla_inmueble.getValueAt(fila, 4).toString());
+                fk_cedula_propietario.setSelectedItem(tabla_inmueble.getValueAt(fila, 4).toString());
             }
             else{
                 JOptionPane.showMessageDialog(null,"Fila no seleccionada");
@@ -178,12 +201,12 @@ public class InmuebleModel {
     public void modificar(JTextField codigo_inmueble,
                         JTextField descripcion,
                         JTextField precio_propietario,
-                        JTextField fk_cedula_propietario) throws SQLException, NumberFormatException{
+                        JComboBox fk_cedula_propietario) throws SQLException, NumberFormatException{
 
         setCodigoInmueble(Integer.parseInt(codigo_inmueble.getText()));
         setDescripcion(descripcion.getText());
         setPrecioPropietario(new BigDecimal(precio_propietario.getText()));
-        setCedulaPropietario(Integer.parseInt(fk_cedula_propietario.getText()));
+        setCedulaPropietario(Integer.parseInt(fk_cedula_propietario.getSelectedItem().toString()));
 
         String consulta = "UPDATE inmueble SET codigo_inmueble =?, descripcion = ?, precio_propietario = ?, fk_cedula_propietario = ? WHERE codigo_inmueble=?;";
 
@@ -217,14 +240,23 @@ public class InmuebleModel {
         }
     }
     
-    public void arrendarInmueble(JTextField codigo_inmueble,
-                        JTextField cedula_cliente,
+    public boolean arrendarInmueble(JComboBox codigo_inmueble,
+                        JComboBox cedula_cliente,
                         JTextField precio_cliente) throws SQLException, NumberFormatException{
 
-        setCodigoInmueble(Integer.parseInt(codigo_inmueble.getText()));
-        
+        setCodigoInmueble(Integer.parseInt(codigo_inmueble.getSelectedItem().toString()));
+
+        //validar si est disponible
+        if (!disponiblidadInmueble(getCodigoInmueble())){
+            JOptionPane.showMessageDialog(null,
+                    "El inmueble no está disponible para arrendar",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
         setPrecioCliente(new BigDecimal(precio_cliente.getText()));
-        setCedulaCliente(Integer.parseInt(cedula_cliente.getText()));
+        setCedulaCliente(Integer.parseInt(cedula_cliente.getSelectedItem().toString()));
 
         String consulta = "UPDATE inmueble SET codigo_inmueble=?, fk_cliente = ?, precio_cliente = ? WHERE codigo_inmueble=?;";
 
@@ -238,6 +270,55 @@ public class InmuebleModel {
         cs.execute();
         JOptionPane.showMessageDialog(null, "Inmueble ha sido arrendado");
         System.out.println("si funciona");
+        return true;
+    }
+
+    public void mostrarComboBoxInmueble(JComboBox comboBox){
+
+        DefaultComboBoxModel modelo = new DefaultComboBoxModel();
+
+        if (comboBox == null) comboBox = new JComboBox<String>();
+
+        String consulta = "SELECT codigo_inmueble FROM inmueble;";
+
+        try {
+            Statement st = conexionBD.establecerConnetion().createStatement();
+            ResultSet rs= st.executeQuery(consulta);
+
+            while (rs.next()){
+
+                setCodigoInmueble(rs.getInt("codigo_inmueble"));
+                String codigo = String.valueOf(getCodigoInmueble());
+
+                System.out.println(codigo);
+                comboBox.addItem(codigo);
+            }
+        }catch (Exception e){
+
+            JOptionPane.showMessageDialog(null,"Error: "+ e);
+        }finally {
+            conexionBD.ConnectionClosed();
+        }
+    }
+
+    public boolean disponiblidadInmueble(int codigoInmueble) {
+        String sql = "SELECT precio_cliente FROM inmueble WHERE codigo_inmueble = ?";
+
+        try (Connection conn = conexionBD.establecerConnetion();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, codigoInmueble);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getObject("precio_cliente") == null; // Disponible si es NULL
+            }
+            return false; // Inmueble no existe
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al verificar disponibilidad: " + e.getMessage());
+            return false;
+        }
     }
 
 /*
