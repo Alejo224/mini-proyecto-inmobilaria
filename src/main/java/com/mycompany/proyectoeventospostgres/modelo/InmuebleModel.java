@@ -240,12 +240,21 @@ public class InmuebleModel {
         }
     }
     
-    public void arrendarInmueble(JComboBox codigo_inmueble,
+    public boolean arrendarInmueble(JComboBox codigo_inmueble,
                         JComboBox cedula_cliente,
                         JTextField precio_cliente) throws SQLException, NumberFormatException{
 
         setCodigoInmueble(Integer.parseInt(codigo_inmueble.getSelectedItem().toString()));
-        
+
+        //validar si est disponible
+        if (!disponiblidadInmueble(getCodigoInmueble())){
+            JOptionPane.showMessageDialog(null,
+                    "El inmueble no está disponible para arrendar",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+
         setPrecioCliente(new BigDecimal(precio_cliente.getText()));
         setCedulaCliente(Integer.parseInt(cedula_cliente.getSelectedItem().toString()));
 
@@ -261,6 +270,7 @@ public class InmuebleModel {
         cs.execute();
         JOptionPane.showMessageDialog(null, "Inmueble ha sido arrendado");
         System.out.println("si funciona");
+        return true;
     }
 
     public void mostrarComboBoxInmueble(JComboBox comboBox){
@@ -288,6 +298,26 @@ public class InmuebleModel {
             JOptionPane.showMessageDialog(null,"Error: "+ e);
         }finally {
             conexionBD.ConnectionClosed();
+        }
+    }
+
+    public boolean disponiblidadInmueble(int codigoInmueble) {
+        String sql = "SELECT precio_cliente FROM inmueble WHERE codigo_inmueble = ?";
+
+        try (Connection conn = conexionBD.establecerConnetion();
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, codigoInmueble);
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getObject("precio_cliente") == null; // Disponible si es NULL
+            }
+            return false; // Inmueble no existe
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al verificar disponibilidad: " + e.getMessage());
+            return false;
         }
     }
 
