@@ -19,44 +19,20 @@ public class InmuebleModel {
     private int codigoInmueble;
     private String descripcion;
     private BigDecimal precioPropietario;
-    private BigDecimal precioCliente;
     private int cedulaPropietario;
-    private int cedulaCliente;
-    private LocalDate fecha;
 
     public InmuebleModel(){
     }
     
-    public InmuebleModel(int codigo_inmueble, String descripcion, BigDecimal precio_propietario, BigDecimal precio_cliente, int fk_cedula_propietario, int fk_cedula_cliente){
+    public InmuebleModel(int codigo_inmueble, String descripcion, BigDecimal precio_propietario, int fk_cedula_propietario){
         this.codigoInmueble = codigo_inmueble;
         this.descripcion = descripcion;
         this.precioPropietario = precio_propietario;
-        this.precioCliente = precio_cliente;
         this.cedulaPropietario = fk_cedula_propietario;
-        this.cedulaCliente = fk_cedula_cliente;
-    }
-
-    public InmuebleModel(int codigoInmueble, String descripcion, BigDecimal precioPropietario, BigDecimal precioCliente,
-                         int cedulaPropietario, int cedulaCliente, LocalDate fecha) {
-        this.codigoInmueble = codigoInmueble;
-        this.descripcion = descripcion;
-        this.precioPropietario = precioPropietario;
-        this.precioCliente = precioCliente;
-        this.cedulaPropietario = cedulaPropietario;
-        this.cedulaCliente = cedulaCliente;
-        this.fecha = fecha;
     }
 
     public ConexionBD getConexionBD() {
         return conexionBD;
-    }
-
-    public LocalDate getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
     }
 
     public int getCodigoInmueble() {
@@ -83,14 +59,6 @@ public class InmuebleModel {
         this.precioPropietario = precioPropietario;
     }
 
-    public BigDecimal getPrecioCliente() {
-        return precioCliente;
-    }
-
-    public void setPrecioCliente(BigDecimal precioCliente) {
-        this.precioCliente = precioCliente;
-    }
-
     public int getCedulaPropietario() {
         return cedulaPropietario;
     }
@@ -99,14 +67,6 @@ public class InmuebleModel {
         this.cedulaPropietario = cedulaPropietario;
     }
 
-    public int getCedulaCliente() {
-        return cedulaCliente;
-    }
-
-    public void setCedulaCliente(int cedulaCliente) {
-        this.cedulaCliente = cedulaCliente;
-    }
-    
 //-----------------------------------------------------------------------    
     
     public void mostrar(JTable tablatotal){
@@ -116,9 +76,7 @@ public class InmuebleModel {
         modelo.addColumn("Codigo inmueble");
         modelo.addColumn("Descripcion");
         modelo.addColumn("Precio del propietario");
-        modelo.addColumn("Precio del cliente");
         modelo.addColumn("cedula propietario");
-        modelo.addColumn("cedula cliente");
 
         if (tablatotal == null){
             tablatotal = new JTable();
@@ -137,13 +95,11 @@ public class InmuebleModel {
                 setCodigoInmueble(rs.getInt("codigo_inmueble"));
                 setDescripcion(rs.getString("descripcion"));
                 setPrecioPropietario(rs.getBigDecimal("precio_propietario"));
-                setPrecioCliente(rs.getBigDecimal("precio_cliente"));
                 setCedulaPropietario(rs.getInt("fk_cedula_propietario"));
-                setCedulaCliente(rs.getInt("fk_cliente"));
 
                 modelo.addRow(new Object[]{ getCodigoInmueble(),
-                        getDescripcion(), getPrecioPropietario(), getPrecioCliente(),
-                        getCedulaPropietario(), getCedulaCliente()});
+                        getDescripcion(), getPrecioPropietario(),
+                        getCedulaPropietario()});
             }
             tablatotal.setModel(modelo);
         }catch (Exception e){
@@ -254,7 +210,7 @@ public class InmuebleModel {
                     JOptionPane.ERROR_MESSAGE);
             return false;
         }
-
+        /*
         setPrecioCliente(new BigDecimal(precio_cliente.getText()));
         setCedulaCliente(Integer.parseInt(cedula_cliente.getSelectedItem().toString()));
 
@@ -270,6 +226,8 @@ public class InmuebleModel {
         cs.execute();
         JOptionPane.showMessageDialog(null, "Inmueble ha sido arrendado");
         System.out.println("si funciona");
+
+         */
         return true;
     }
 

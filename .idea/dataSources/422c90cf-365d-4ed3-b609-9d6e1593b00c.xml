@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="User Data Source">
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.53">
+    <root id="1">
+      <DefaultCasing>lower/lower</DefaultCasing>
+      <DefaultEngine>InnoDB</DefaultEngine>
+      <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
+      <ServerVersion>8.0.40</ServerVersion>
+    </root>
+    <schema id="2" parent="1" name="mysql">
+      <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
+      <LastIntrospectionLevel>1</LastIntrospectionLevel>
+      <LastIntrospectionLocalTimestamp>2025-05-31.22:12:14</LastIntrospectionLocalTimestamp>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <schema id="3" parent="1" name="information_schema">
+      <AutoIntrospectionLevel>2</AutoIntrospectionLevel>
+      <LastIntrospectionLevel>1</LastIntrospectionLevel>
+      <LastIntrospectionLocalTimestamp>2025-05-31.22:12:14</LastIntrospectionLocalTimestamp>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </schema>
+    <schema id="4" parent="1" name="performance_schema">
+      <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
+      <LastIntrospectionLevel>1</LastIntrospectionLevel>
+      <LastIntrospectionLocalTimestamp>2025-05-31.22:12:14</LastIntrospectionLocalTimestamp>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <schema id="5" parent="1" name="sys">
+      <AutoIntrospectionLevel>2</AutoIntrospectionLevel>
+      <LastIntrospectionLevel>1</LastIntrospectionLevel>
+      <LastIntrospectionLocalTimestamp>2025-05-31.22:12:14</LastIntrospectionLocalTimestamp>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <schema id="6" parent="1" name="res_api_db">
+      <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
+      <LastIntrospectionLevel>1</LastIntrospectionLevel>
+      <LastIntrospectionLocalTimestamp>2025-05-31.22:12:14</LastIntrospectionLocalTimestamp>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <schema id="7" parent="1" name="db_springboot_dev">
+      <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
+      <LastIntrospectionLevel>1</LastIntrospectionLevel>
+      <LastIntrospectionLocalTimestamp>2025-05-31.22:12:14</LastIntrospectionLocalTimestamp>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <schema id="8" parent="1" name="movies">
+      <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
+      <LastIntrospectionLevel>1</LastIntrospectionLevel>
+      <LastIntrospectionLocalTimestamp>2025-05-31.22:12:14</LastIntrospectionLocalTimestamp>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <schema id="9" parent="1" name="movieproyect">
+      <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
+      <LastIntrospectionLevel>1</LastIntrospectionLevel>
+      <LastIntrospectionLocalTimestamp>2025-05-31.22:12:14</LastIntrospectionLocalTimestamp>
+      <CollationName>utf8mb3_general_ci</CollationName>
+    </schema>
+    <schema id="10" parent="1" name="personas-db">
+      <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
+      <LastIntrospectionLevel>1</LastIntrospectionLevel>
+      <LastIntrospectionLocalTimestamp>2025-05-31.22:12:14</LastIntrospectionLocalTimestamp>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <schema id="11" parent="1" name="contacts_db">
+      <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
+      <LastIntrospectionLevel>1</LastIntrospectionLevel>
+      <LastIntrospectionLocalTimestamp>2025-05-31.22:12:14</LastIntrospectionLocalTimestamp>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <schema id="12" parent="1" name="swaggerdb">
+      <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
+      <LastIntrospectionLevel>1</LastIntrospectionLevel>
+      <LastIntrospectionLocalTimestamp>2025-05-31.22:12:14</LastIntrospectionLocalTimestamp>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <schema id="13" parent="1" name="gestor_venta">
+      <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
+      <LastIntrospectionLevel>1</LastIntrospectionLevel>
+      <LastIntrospectionLocalTimestamp>2025-05-31.22:12:14</LastIntrospectionLocalTimestamp>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <schema id="14" parent="1" name="inmobilaria">
+      <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
+      <Current>1</Current>
+      <LastIntrospectionLevel>1</LastIntrospectionLevel>
+      <LastIntrospectionLocalTimestamp>2025-05-31.22:12:14</LastIntrospectionLocalTimestamp>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <schema id="15" parent="1" name="inmobilaria_db">
+      <AutoIntrospectionLevel>3</AutoIntrospectionLevel>
+      <LastIntrospectionLevel>1</LastIntrospectionLevel>
+      <LastIntrospectionLocalTimestamp>2025-05-31.22:12:14</LastIntrospectionLocalTimestamp>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <table id="16" parent="14" name="agente_comercial">
+      <DetailsLevel>3</DetailsLevel>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="17" parent="14" name="arriendo">
+      <DetailsLevel>3</DetailsLevel>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="18" parent="14" name="cliente">
+      <DetailsLevel>3</DetailsLevel>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="19" parent="14" name="inmueble">
+      <DetailsLevel>3</DetailsLevel>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <table id="20" parent="14" name="propietario">
+      <DetailsLevel>3</DetailsLevel>
+      <Engine>InnoDB</Engine>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </table>
+    <column id="21" parent="16" name="cedula">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="22" parent="16" name="nombre_completo">
+      <Position>2</Position>
+      <StoredType>varchar(100)|0s</StoredType>
+    </column>
+    <column id="23" parent="16" name="telefono">
+      <Position>3</Position>
+      <StoredType>varchar(65)|0s</StoredType>
+    </column>
+    <column id="24" parent="16" name="direccion">
+      <Position>4</Position>
+      <StoredType>varchar(100)|0s</StoredType>
+    </column>
+    <column id="25" parent="16" name="email">
+      <Position>5</Position>
+      <StoredType>varchar(125)|0s</StoredType>
+    </column>
+    <index id="26" parent="16" name="PRIMARY">
+      <ColNames>cedula</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="27" parent="16" name="cedula_UNIQUE">
+      <ColNames>cedula</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="28" parent="16" name="telefono_UNIQUE">
+      <ColNames>telefono</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="29" parent="16" name="email_UNIQUE">
+      <ColNames>email</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <key id="30" parent="16" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <key id="31" parent="16" name="cedula_UNIQUE">
+      <UnderlyingIndexName>cedula_UNIQUE</UnderlyingIndexName>
+    </key>
+    <key id="32" parent="16" name="telefono_UNIQUE">
+      <UnderlyingIndexName>telefono_UNIQUE</UnderlyingIndexName>
+    </key>
+    <key id="33" parent="16" name="email_UNIQUE">
+      <UnderlyingIndexName>email_UNIQUE</UnderlyingIndexName>
+    </key>
+    <column id="34" parent="17" name="id_arriendo">
+      <AutoIncrement>1</AutoIncrement>
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="35" parent="17" name="codigo_inmueble">
+      <NotNull>1</NotNull>
+      <Position>2</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="36" parent="17" name="fecha_inicio">
+      <NotNull>1</NotNull>
+      <Position>3</Position>
+      <StoredType>date|0s</StoredType>
+    </column>
+    <column id="37" parent="17" name="fecha_fin">
+      <NotNull>1</NotNull>
+      <Position>4</Position>
+      <StoredType>date|0s</StoredType>
+    </column>
+    <column id="38" parent="17" name="monto_mensual">
+      <NotNull>1</NotNull>
+      <Position>5</Position>
+      <StoredType>decimal(12,2 digit)|0s</StoredType>
+    </column>
+    <column id="39" parent="17" name="comision_agente">
+      <Comment>Monto calculado</Comment>
+      <NotNull>1</NotNull>
+      <Position>6</Position>
+      <StoredType>decimal(12,2 digit)|0s</StoredType>
+    </column>
+    <column id="40" parent="17" name="comision_inmobiliaria">
+      <Comment>Monto calculado</Comment>
+      <NotNull>1</NotNull>
+      <Position>7</Position>
+      <StoredType>decimal(12,2 digit)|0s</StoredType>
+    </column>
+    <column id="41" parent="17" name="fk_cliente">
+      <NotNull>1</NotNull>
+      <Position>8</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="42" parent="17" name="fk_agente">
+      <NotNull>1</NotNull>
+      <Position>9</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="43" parent="17" name="fecha_registro">
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
+      <Position>10</Position>
+      <StoredType>timestamp|0s</StoredType>
+    </column>
+    <foreign-key id="44" parent="17" name="arriendo_ibfk_1">
+      <ColNames>codigo_inmueble</ColNames>
+      <RefColNames>codigo_inmueble</RefColNames>
+      <RefTableName>inmueble</RefTableName>
+    </foreign-key>
+    <foreign-key id="45" parent="17" name="arriendo_ibfk_2">
+      <ColNames>fk_cliente</ColNames>
+      <RefColNames>cedula</RefColNames>
+      <RefTableName>cliente</RefTableName>
+    </foreign-key>
+    <foreign-key id="46" parent="17" name="arriendo_ibfk_3">
+      <ColNames>fk_agente</ColNames>
+      <RefColNames>cedula</RefColNames>
+      <RefTableName>agente_comercial</RefTableName>
+    </foreign-key>
+    <index id="47" parent="17" name="PRIMARY">
+      <ColNames>id_arriendo</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="48" parent="17" name="codigo_inmueble">
+      <ColNames>codigo_inmueble</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="49" parent="17" name="fk_cliente">
+      <ColNames>fk_cliente</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="50" parent="17" name="fk_agente">
+      <ColNames>fk_agente</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="51" parent="17" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="52" parent="18" name="cedula">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="53" parent="18" name="nombre_completo">
+      <Position>2</Position>
+      <StoredType>varchar(100)|0s</StoredType>
+    </column>
+    <column id="54" parent="18" name="telefono">
+      <Position>3</Position>
+      <StoredType>varchar(65)|0s</StoredType>
+    </column>
+    <column id="55" parent="18" name="direccion">
+      <Position>4</Position>
+      <StoredType>varchar(100)|0s</StoredType>
+    </column>
+    <column id="56" parent="18" name="email">
+      <Position>5</Position>
+      <StoredType>varchar(125)|0s</StoredType>
+    </column>
+    <column id="57" parent="18" name="cedula_agente">
+      <Position>6</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <foreign-key id="58" parent="18" name="cliente_ibfk_1">
+      <ColNames>cedula_agente</ColNames>
+      <RefColNames>cedula</RefColNames>
+      <RefTableName>agente_comercial</RefTableName>
+    </foreign-key>
+    <index id="59" parent="18" name="PRIMARY">
+      <ColNames>cedula</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="60" parent="18" name="telefono">
+      <ColNames>telefono</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="61" parent="18" name="email">
+      <ColNames>email</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="62" parent="18" name="cedula_agente">
+      <ColNames>cedula_agente</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="63" parent="18" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <key id="64" parent="18" name="telefono">
+      <UnderlyingIndexName>telefono</UnderlyingIndexName>
+    </key>
+    <key id="65" parent="18" name="email">
+      <UnderlyingIndexName>email</UnderlyingIndexName>
+    </key>
+    <column id="66" parent="19" name="codigo_inmueble">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="67" parent="19" name="descripcion">
+      <Position>2</Position>
+      <StoredType>varchar(255)|0s</StoredType>
+    </column>
+    <column id="68" parent="19" name="precio_propietario">
+      <Position>3</Position>
+      <StoredType>decimal(12,2 digit)|0s</StoredType>
+    </column>
+    <column id="69" parent="19" name="precio_cliente">
+      <Position>4</Position>
+      <StoredType>decimal(12,2 digit)|0s</StoredType>
+    </column>
+    <column id="70" parent="19" name="fk_cliente">
+      <Position>5</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="71" parent="19" name="fk_cedula_propietario">
+      <Position>6</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <foreign-key id="72" parent="19" name="fk_cliente">
+      <ColNames>fk_cliente</ColNames>
+      <OnDelete>set-null</OnDelete>
+      <RefColNames>cedula</RefColNames>
+      <RefTableName>cliente</RefTableName>
+    </foreign-key>
+    <foreign-key id="73" parent="19" name="fk_propietario">
+      <ColNames>fk_cedula_propietario</ColNames>
+      <OnDelete>cascade</OnDelete>
+      <RefColNames>cedula</RefColNames>
+      <RefTableName>propietario</RefTableName>
+    </foreign-key>
+    <index id="74" parent="19" name="PRIMARY">
+      <ColNames>codigo_inmueble</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="75" parent="19" name="fk_cliente">
+      <ColNames>fk_cliente</ColNames>
+      <Type>btree</Type>
+    </index>
+    <index id="76" parent="19" name="fk_propietario">
+      <ColNames>fk_cedula_propietario</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="77" parent="19" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <column id="78" parent="20" name="cedula">
+      <NotNull>1</NotNull>
+      <Position>1</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <column id="79" parent="20" name="nombre_completo">
+      <Position>2</Position>
+      <StoredType>varchar(100)|0s</StoredType>
+    </column>
+    <column id="80" parent="20" name="telefono">
+      <Position>3</Position>
+      <StoredType>varchar(65)|0s</StoredType>
+    </column>
+    <column id="81" parent="20" name="direccion">
+      <Position>4</Position>
+      <StoredType>varchar(100)|0s</StoredType>
+    </column>
+    <column id="82" parent="20" name="email">
+      <Position>5</Position>
+      <StoredType>varchar(125)|0s</StoredType>
+    </column>
+    <column id="83" parent="20" name="cedula_agente">
+      <Position>6</Position>
+      <StoredType>int|0s</StoredType>
+    </column>
+    <foreign-key id="84" parent="20" name="propietario_ibfk_1">
+      <ColNames>cedula_agente</ColNames>
+      <RefColNames>cedula</RefColNames>
+      <RefTableName>agente_comercial</RefTableName>
+    </foreign-key>
+    <index id="85" parent="20" name="PRIMARY">
+      <ColNames>cedula</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="86" parent="20" name="email">
+      <ColNames>email</ColNames>
+      <Type>btree</Type>
+      <Unique>1</Unique>
+    </index>
+    <index id="87" parent="20" name="cedula_agente">
+      <ColNames>cedula_agente</ColNames>
+      <Type>btree</Type>
+    </index>
+    <key id="88" parent="20" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
+    </key>
+    <key id="89" parent="20" name="email">
+      <UnderlyingIndexName>email</UnderlyingIndexName>
+    </key>
+  </database-model>
+</dataSource>
