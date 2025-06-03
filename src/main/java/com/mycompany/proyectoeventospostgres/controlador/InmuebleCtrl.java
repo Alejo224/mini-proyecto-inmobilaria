@@ -5,10 +5,11 @@
 package com.mycompany.proyectoeventospostgres.controlador;
 
 import com.mycompany.proyectoeventospostgres.modelo.ConexionBD;
+import com.mycompany.proyectoeventospostgres.vista.ArriendoView;
 import com.mycompany.proyectoeventospostgres.vista.InmuebleView;
 import com.mycompany.proyectoeventospostgres.vista.MenuView;
 import com.mycompany.proyectoeventospostgres.modelo.InmuebleModel;
-import com.mycompany.proyectoeventospostgres.vista.ArrendarInmuebleView;
+
 import java.awt.event.*;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
@@ -23,9 +24,7 @@ public class InmuebleCtrl implements ActionListener, MouseListener, ItemListener
     private final InmuebleView inmuebleView;
     private MenuView menuView;
     private InmuebleModel inmuebleModel = new InmuebleModel();
-    private final ConexionBD conexionBD = new ConexionBD();
-    private ArrendarInmuebleView arrendarInmueble;
-    
+    private ArriendoView arriendoView;
     public InmuebleCtrl(InmuebleView inmuebleView) {
         this.inmuebleView = inmuebleView;
     }
@@ -130,10 +129,10 @@ public class InmuebleCtrl implements ActionListener, MouseListener, ItemListener
 
             inmuebleView.setVisible(false);
 
-            if (arrendarInmueble == null){
-                arrendarInmueble = new ArrendarInmuebleView();
+            if (arriendoView == null){
+                arriendoView = new ArriendoView();
             }
-            arrendarInmueble.setVisible(true);
+            arriendoView.setVisible(true);
         }
     }
 
