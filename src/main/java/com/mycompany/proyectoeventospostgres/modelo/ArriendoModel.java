@@ -2,7 +2,7 @@ package com.mycompany.proyectoeventospostgres.modelo;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.sql.Date;
+import java.util.Date;
 
 public class ArriendoModel {
     private int cedulaCliente, codigoInmueble, cedulaAgente, idArriendo;
@@ -51,8 +51,17 @@ public class ArriendoModel {
                 '}';
     }
 
-    //Getters y Setters
+    // Método para obtener fecha inicio en formato SQL
+    public java.sql.Date getFechaInicioSQL() {
+        return new java.sql.Date(fechaInicio.getTime());
+    }
 
+    // Método para obtener fecha fin en formato SQL (nullable)
+    public java.sql.Date getFechaFinSQL() {
+        return fechaFin != null ? new java.sql.Date(fechaFin.getTime()) : null;
+    }
+
+    //Getters y Setters
 
     public int getIdArriendo() {
         return idArriendo;

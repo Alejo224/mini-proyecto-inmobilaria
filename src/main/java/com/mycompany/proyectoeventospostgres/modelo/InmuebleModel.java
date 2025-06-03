@@ -144,7 +144,7 @@ public class InmuebleModel {
                 codigo_inmueble.setText(tabla_inmueble.getValueAt(fila, 0).toString());
                 descripcion.setText(tabla_inmueble.getValueAt(fila, 1).toString());
                 precio_propietario.setText(tabla_inmueble.getValueAt(fila, 2).toString());
-                fk_cedula_propietario.setSelectedItem(tabla_inmueble.getValueAt(fila, 4).toString());
+                fk_cedula_propietario.setSelectedItem(tabla_inmueble.getValueAt(fila, 3).toString());
             }
             else{
                 JOptionPane.showMessageDialog(null,"Fila no seleccionada");
