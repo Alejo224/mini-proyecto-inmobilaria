@@ -37,25 +37,14 @@ public class ArrendarCtrl implements ActionListener, ItemListener {
                 Date fechaInicio = arriendoView.getJdateInicio().getDate();
                 Date fechaFin =  arriendoView.getJdateFin().getDate();
 
-                // validar fecha
-                if (fechaInicio == null){
-                    JOptionPane.showMessageDialog(arriendoView, "Seleccione una fecha de inicio valida",
-                            "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
+                if (arriendoDAO.validarArriendo(codigoInmueble,fechaInicio,
+                        fechaFin, montoMensual.doubleValue())){
+                    ArriendoModel arriendoModel = new ArriendoModel(cedulaCliente, codigoInmueble,
+                            fechaInicio, cedulaAgente, fechaFin, montoMensual);
 
-                ArriendoModel arriendoModel = new ArriendoModel(cedulaCliente, codigoInmueble,
-                        fechaInicio, cedulaAgente, fechaFin, montoMensual);
-
-                //validar si la fecha seleccionada se encuentra disponible
-                if (!arriendoDAO.isDisponible(codigoInmueble, new java.sql.Date(fechaInicio.getTime()), new java.sql.Date(fechaFin.getTime()))) {
-                    JOptionPane.showMessageDialog(arriendoView, "Ya se encuentra arrendado. Fechas posibles \n"
-                                    + arriendoModel.getFechaInicioSQL() + " y " + arriendoModel.getFechaFinSQL(),
-                            "Error", JOptionPane.INFORMATION_MESSAGE);
-                    return;
+                    arriendoDAO.crearArriendo(arriendoModel);
+                    arriendoView.limpiarFormulario();
                 }
-                arriendoDAO.crearArriendo(arriendoModel);
-                arriendoView.limpiarFormulario();
 
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(arriendoView, "Error al guardar en base de datos: " + ex.getMessage(),
