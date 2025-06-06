@@ -4,7 +4,7 @@
  */
 package com.mycompany.proyectoeventospostgres.controlador;
 
-import com.mycompany.proyectoeventospostgres.modelo.ConexionBD;
+import com.mycompany.proyectoeventospostgres.modelo.DAO.ArriendoDAO;
 import com.mycompany.proyectoeventospostgres.vista.ArriendoView;
 import com.mycompany.proyectoeventospostgres.vista.InmuebleView;
 import com.mycompany.proyectoeventospostgres.vista.MenuView;
@@ -28,6 +28,7 @@ public class InmuebleCtrl implements ActionListener, MouseListener, ItemListener
     public InmuebleCtrl(InmuebleView inmuebleView) {
         this.inmuebleView = inmuebleView;
     }
+    private ArriendoDAO arriendoDAO;
         
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -150,6 +151,10 @@ public class InmuebleCtrl implements ActionListener, MouseListener, ItemListener
                     codigo_inmueble, descripcion, precio_propietario, fk_cedula_propietario);
             inmuebleView.getTxtCodigoInmueble().setEditable(false);
             inmuebleView.getJbCancelar().setVisible(true);
+
+            if (arriendoDAO == null) arriendoDAO = new ArriendoDAO();
+            int codigo = Integer.parseInt(codigo_inmueble.getText());
+            arriendoDAO.getCodigoInmueble(codigo);
         }
     }
 

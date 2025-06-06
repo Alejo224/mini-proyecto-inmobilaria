@@ -47,8 +47,14 @@ public class ArrendarCtrl implements ActionListener, ItemListener {
                 ArriendoModel arriendoModel = new ArriendoModel(cedulaCliente, codigoInmueble,
                         fechaInicio, cedulaAgente, fechaFin, montoMensual);
 
+                //validar si la fecha seleccionada se encuentra disponible
+                if (!arriendoDAO.isDisponible(codigoInmueble, new java.sql.Date(fechaInicio.getTime()), new java.sql.Date(fechaFin.getTime()))) {
+                    JOptionPane.showMessageDialog(arriendoView, "Ya se encuentra arrendado. Fechas posibles \n"
+                                    + arriendoModel.getFechaInicioSQL() + " y " + arriendoModel.getFechaFinSQL(),
+                            "Error", JOptionPane.INFORMATION_MESSAGE);
+                    return;
+                }
                 arriendoDAO.crearArriendo(arriendoModel);
-
                 arriendoView.limpiarFormulario();
 
             } catch (SQLException ex) {
