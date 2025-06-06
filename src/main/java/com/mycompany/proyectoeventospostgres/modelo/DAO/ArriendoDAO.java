@@ -4,10 +4,7 @@ import com.mycompany.proyectoeventospostgres.modelo.ArriendoModel;
 import com.mycompany.proyectoeventospostgres.modelo.ConexionBD;
 
 import javax.swing.*;
-import java.math.BigDecimal;
 import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class ArriendoDAO {
 
@@ -25,18 +22,18 @@ public class ArriendoDAO {
                 "monto_mensual, comision_agente, comision_inmobiliaria, " +
                 "fk_cliente, fk_agente) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
-        CallableStatement cs = conexionBD.establecerConnetion().prepareCall(consulta);
+        PreparedStatement stmt = conexionBD.establecerConnetion().prepareStatement(consulta);
 
-        cs.setInt(1, arriendo.getCodigoInmueble());
-        cs.setDate(2, arriendo.getFechaInicioSQL());
-        cs.setDate(3, arriendo.getFechaFinSQL());
-        cs.setBigDecimal(4, arriendo.getMontoMensual());
-        cs.setBigDecimal(5, arriendo.getComisionAgente());
-        cs.setBigDecimal(6, arriendo.getComisionInmobilaria());
-        cs.setInt(7, arriendo.getCedulaCliente());
-        cs.setInt(8, arriendo.getCedulaAgente());
-        cs.setInt(8, arriendo.getCedulaAgente());
-        cs.execute();
+        stmt.setInt(1, arriendo.getCodigoInmueble());
+        stmt.setDate(2, arriendo.getFechaInicioSQL());
+        stmt.setDate(3, arriendo.getFechaFinSQL());
+        stmt.setBigDecimal(4, arriendo.getMontoMensual());
+        stmt.setBigDecimal(5, arriendo.getComisionAgente());
+        stmt.setBigDecimal(6, arriendo.getComisionInmobilaria());
+        stmt.setInt(7, arriendo.getCedulaCliente());
+        stmt.setInt(8, arriendo.getCedulaAgente());
+        stmt.setInt(8, arriendo.getCedulaAgente());
+        stmt.execute();
 
         JOptionPane.showMessageDialog(null, "Arriendo registrado con éxito",
                 "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
@@ -79,6 +76,27 @@ public class ArriendoDAO {
             JOptionPane.showMessageDialog(null,"Elimino Correctamente");
         }
     }
+
+    public boolean isDisponible(int codigoInmueble, Date nuevoInicio, Date nuevoFin){
+        String sql = "SELECT COUNT(*) FROM arriendo " +
+                "   WHERE codigo_inmueble = ? AND activo = 1 " +
+                "AND fecha_inicio <= ? AND fecha_fin >= ? ";
+
+        try(PreparedStatement stmt = conexionBD.establecerConnetion().prepareStatement(sql)){
+
+            stmt.setInt(1, codigoInmueble);
+            stmt.setDate(2, new Date(nuevoFin.getTime()));
+            stmt.setDate(3, new Date(nuevoInicio.getTime()));
+
+            ResultSet rs = stmt.executeQuery();
+            return rs.next() && rs.getInt(1) == 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 
     public void mostrarComboBoxInmueble(JComboBox comboBox){
 
@@ -162,6 +180,9 @@ public class ArriendoDAO {
         }
     }
 
+    public void getCodigoInmueble(int codigo){
+        arriendoModel.setCodigoInmueble(codigo);
+    }
 
     public static void main(String[] args)  {
         /*
