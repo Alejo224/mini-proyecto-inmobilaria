@@ -77,7 +77,7 @@ public class ArriendoDAO {
         }
     }
 
-    public boolean isDisponible(int codigoInmueble, Date nuevoInicio, Date nuevoFin){
+    private boolean isDisponible(int codigoInmueble, Date nuevoInicio, Date nuevoFin){
         String sql = "SELECT COUNT(*) FROM arriendo " +
                 "   WHERE codigo_inmueble = ? AND activo = 1 " +
                 "AND fecha_inicio <= ? AND fecha_fin >= ? ";
@@ -97,6 +97,56 @@ public class ArriendoDAO {
         }
     }
 
+    //metodo para obtener el precio minimo (inmueble: precio_propietario)
+    public double obtenerPreciominimo(int codigoInmueble) throws SQLException{
+
+        String sql = "SELECT precio_propietario * 0.9 FROM inmueble" +
+                " WHERE codigo_inmueble = ?";
+
+        try(PreparedStatement stmt = conexionBD.establecerConnetion().prepareStatement(sql)){
+            stmt.setInt(1, codigoInmueble);
+
+            ResultSet rs = stmt.executeQuery();
+            return rs.next() ? rs.getDouble(1) : 0;
+        }
+    }
+
+    public boolean validarArriendo(int codigoInmueble, java.util.Date fechaInicio, java.util.Date fechaFin,
+                                double montoMensual) throws SQLException{
+        // validar fecha
+        if (fechaInicio == null){
+            JOptionPane.showMessageDialog(null, "Seleccione una fecha de inicio valida",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        System.out.println("validar fecha listo");
+
+        //darle formato de tipo sql (2023-01-12)
+        Date fechaInicioSQL =   new java.sql.Date(fechaInicio.getTime());
+        Date fechaFinSQL = new java.sql.Date(fechaFin.getTime());
+
+        //validar si la fecha seleccionada se encuentra disponible
+        if (!isDisponible(codigoInmueble, fechaInicioSQL, fechaFinSQL)) {
+            JOptionPane.showMessageDialog(null, "Ya se encuentra arrendado. Fechas posibles \n"
+                            + fechaInicioSQL + " y " +fechaFinSQL,
+                    "Error", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        System.out.println("validar fecha seleccionada listo");
+
+        // Valdar monto minimo
+        double precioMinimo;
+        precioMinimo = obtenerPreciominimo(codigoInmueble);
+
+        if (montoMensual < precioMinimo){
+            JOptionPane.showMessageDialog(null, "El monto $" + montoMensual +" es menor al mínimo permitdo $"+
+                    precioMinimo, "Precio no permitido", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
+        //Todas las validaciones han sido correctas
+        System.out.println("validacción correctamente");
+        return true;
+    }
 
     public void mostrarComboBoxInmueble(JComboBox comboBox){
 
