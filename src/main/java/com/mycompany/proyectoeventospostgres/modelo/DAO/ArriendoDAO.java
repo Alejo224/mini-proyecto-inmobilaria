@@ -4,12 +4,14 @@ import com.mycompany.proyectoeventospostgres.modelo.ArriendoModel;
 import com.mycompany.proyectoeventospostgres.modelo.ConexionBD;
 
 import javax.swing.*;
+import java.math.BigDecimal;
 import java.sql.*;
 
 public class ArriendoDAO {
 
     private final ConexionBD conexionBD = new ConexionBD();
     private ArriendoModel arriendoModel = new ArriendoModel();
+    private int codigoInmueble;
 
     public ArriendoDAO(){}
 
@@ -32,8 +34,7 @@ public class ArriendoDAO {
         stmt.setBigDecimal(6, arriendo.getComisionInmobilaria());
         stmt.setInt(7, arriendo.getCedulaCliente());
         stmt.setInt(8, arriendo.getCedulaAgente());
-        stmt.setInt(8, arriendo.getCedulaAgente());
-        stmt.execute();
+        stmt.executeUpdate();
 
         JOptionPane.showMessageDialog(null, "Arriendo registrado con éxito",
                 "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
@@ -49,14 +50,14 @@ public class ArriendoDAO {
 
         stmt.setInt(1, arriendo.getIdArriendo());
         stmt.setInt(2, arriendo.getCodigoInmueble());
-        stmt.setDate(2, arriendo.getFechaInicioSQL());
-        stmt.setDate(3, arriendo.getFechaFinSQL());
-        stmt.setBigDecimal(4, arriendo.getMontoMensual());
-        stmt.setBigDecimal(5, arriendo.getComisionAgente());
-        stmt.setBigDecimal(6, arriendo.getComisionInmobilaria());
-        stmt.setInt(7, arriendo.getCedulaCliente());
-        stmt.setInt(8, arriendo.getCedulaAgente());
-        stmt.setInt(9, arriendo.getIdArriendo());
+        stmt.setDate(3, arriendo.getFechaInicioSQL());
+        stmt.setDate(4, arriendo.getFechaFinSQL());
+        stmt.setBigDecimal(5, arriendo.getMontoMensual());
+        stmt.setBigDecimal(6, arriendo.getComisionAgente());
+        stmt.setBigDecimal(7, arriendo.getComisionInmobilaria());
+        stmt.setInt(8, arriendo.getCedulaCliente());
+        stmt.setInt(9, arriendo.getCedulaAgente());
+        stmt.setInt(10, arriendo.getIdArriendo());
         stmt.execute();
 
         JOptionPane.showMessageDialog(null, "Arriendo actualizado con éxito",
@@ -131,7 +132,7 @@ public class ArriendoDAO {
     //metodo para obtener el precio minimo (inmueble: precio_propietario)
     public double obtenerPreciominimo(int codigoInmueble) throws SQLException{
 
-        String sql = "SELECT precio_propietario * 0.9 FROM inmueble" +
+        String sql = "SELECT precio_propietario * 0.9 AS precio_minimo FROM inmueble" +
                 " WHERE codigo_inmueble = ?";
 
         try(PreparedStatement stmt = conexionBD.establecerConnetion().prepareStatement(sql)){
@@ -179,6 +180,32 @@ public class ArriendoDAO {
         return true;
     }
 
+    public boolean mostrarArriendos(int codigoInmueble) throws SQLException{
+        String sql = "SELECT fk_agente, fecha_inicio, fecha_fin, monto_mensual, comision_agente, comision_inmobiliaria" +
+                " FROM arriendo WHERE codigo_inmueble = ?;";
+
+        try(PreparedStatement stmt = conexionBD.establecerConnetion().prepareStatement(sql)){
+            stmt.setInt(1, codigoInmueble);
+            
+            ResultSet rs = stmt.executeQuery();
+
+            boolean hayResultados = false;
+
+            while (rs.next()){
+                hayResultados = true;
+                arriendoModel.setCedulaAgente(rs.getInt("fk_agente"));
+                arriendoModel.setFechaInicio(rs.getDate("fecha_inicio"));
+                arriendoModel.setFechaFin(rs.getDate("fecha_fin"));
+                arriendoModel.setMontoMensual(BigDecimal.valueOf(rs.getDouble("monto_mensual")));
+                arriendoModel.setComisionAgente(BigDecimal.valueOf(rs.getDouble("comision_agente")));
+                arriendoModel.setComisionInmobilaria(BigDecimal.valueOf(rs.getDouble("comision_inmobiliaria")));
+
+                System.out.println(arriendoModel.toString());
+
+            }
+            return hayResultados;
+        }
+    }
     public void mostrarComboBoxInmueble(JComboBox comboBox){
 
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
@@ -261,8 +288,11 @@ public class ArriendoDAO {
         }
     }
 
-    public void getCodigoInmueble(int codigo){
-        arriendoModel.setCodigoInmueble(codigo);
+    public void setCodigoInmueble(int codigoInmueble){
+        this.codigoInmueble = codigoInmueble;
+    }
+    public int getCodigoInmueble(){
+        return codigoInmueble;
     }
 
     public static void main(String[] args)  {

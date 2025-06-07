@@ -124,7 +124,7 @@ public class InmuebleCtrl implements ActionListener, MouseListener, ItemListener
             inmuebleView.getTxtCodigoInmueble().setEditable(true);
             inmuebleView.getJbCancelar().setVisible(false);
         }
-        
+
         if (e.getSource().equals(inmuebleView.getJbArrendarInmueble())){
             System.out.println("Ingresando Arrendar inmueble");
 
@@ -152,9 +152,6 @@ public class InmuebleCtrl implements ActionListener, MouseListener, ItemListener
             inmuebleView.getTxtCodigoInmueble().setEditable(false);
             inmuebleView.getJbCancelar().setVisible(true);
 
-            if (arriendoDAO == null) arriendoDAO = new ArriendoDAO();
-            int codigo = Integer.parseInt(codigo_inmueble.getText());
-            arriendoDAO.getCodigoInmueble(codigo);
         }
     }
 
