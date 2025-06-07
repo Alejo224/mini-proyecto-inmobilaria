@@ -2,8 +2,10 @@ package com.mycompany.proyectoeventospostgres.modelo.DAO;
 
 import com.mycompany.proyectoeventospostgres.modelo.ArriendoModel;
 import com.mycompany.proyectoeventospostgres.modelo.ConexionBD;
+import com.mycompany.proyectoeventospostgres.vista.ArriendoView;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.math.BigDecimal;
 import java.sql.*;
 
@@ -180,20 +182,34 @@ public class ArriendoDAO {
         return true;
     }
 
-    public boolean mostrarArriendos(int codigoInmueble) throws SQLException{
-        String sql = "SELECT fk_agente, fecha_inicio, fecha_fin, monto_mensual, comision_agente, comision_inmobiliaria" +
+    public boolean mostrarArriendos(int codigoInmueble, JTable tablaArriendos){
+        String sql = "SELECT fk_agente, fk_cliente, fecha_inicio, fecha_fin, monto_mensual, comision_agente, comision_inmobiliaria" +
                 " FROM arriendo WHERE codigo_inmueble = ?;";
+
+        DefaultTableModel model = new DefaultTableModel();
+
+        model.addColumn("C. Agente");
+        model.addColumn("C. Cliente");
+        model.addColumn("Fecha Inicio");
+        model.addColumn("Fecha Fin");
+        model.addColumn( "Monto Mensual");
+        model.addColumn( "Comision Agente");
+        model.addColumn( "Comision Inmobilaria");
+
+        if (tablaArriendos == null){
+            tablaArriendos = new JTable();
+        }
+        boolean hayResultados = false;
 
         try(PreparedStatement stmt = conexionBD.establecerConnetion().prepareStatement(sql)){
             stmt.setInt(1, codigoInmueble);
             
             ResultSet rs = stmt.executeQuery();
 
-            boolean hayResultados = false;
-
             while (rs.next()){
                 hayResultados = true;
                 arriendoModel.setCedulaAgente(rs.getInt("fk_agente"));
+                arriendoModel.setCedulaCliente(rs.getInt("fk_cliente"));
                 arriendoModel.setFechaInicio(rs.getDate("fecha_inicio"));
                 arriendoModel.setFechaFin(rs.getDate("fecha_fin"));
                 arriendoModel.setMontoMensual(BigDecimal.valueOf(rs.getDouble("monto_mensual")));
@@ -202,9 +218,26 @@ public class ArriendoDAO {
 
                 System.out.println(arriendoModel.toString());
 
+                model.addRow(new Object[]{ arriendoModel.getCedulaAgente(), arriendoModel.getCedulaCliente(), arriendoModel.getFechaInicioSQL(), arriendoModel.getFechaFinSQL(),
+                arriendoModel.getMontoMensual(), arriendoModel.getComisionAgente(), arriendoModel.getComisionInmobilaria()});
             }
+            tablaArriendos.setModel(model);
+            return hayResultados;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
             return hayResultados;
         }
+    }
+
+    public void mostrarArriendoTabla(JTable tablaArriendos){
+        DefaultTableModel model = new DefaultTableModel();
+
+        if (tablaArriendos == null){
+            tablaArriendos = new JTable();
+        }
+
+        tablaArriendos.setModel(model);
+
     }
     public void mostrarComboBoxInmueble(JComboBox comboBox){
 

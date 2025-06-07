@@ -134,6 +134,8 @@ public class InmuebleCtrl implements ActionListener, MouseListener, ItemListener
                 arriendoView = new ArriendoView();
             }
             arriendoView.setVisible(true);
+            if (arriendoDAO == null ) arriendoDAO = new ArriendoDAO();
+            arriendoDAO.mostrarArriendos(0, arriendoView.getjTable1());
         }
     }
 
@@ -149,7 +151,7 @@ public class InmuebleCtrl implements ActionListener, MouseListener, ItemListener
 
             inmuebleModel.seleccionar(inmuebleView.getTbListaInmuebles(),
                     codigo_inmueble, descripcion, precio_propietario, fk_cedula_propietario);
-            inmuebleView.getTxtCodigoInmueble().setEditable(false);
+            inmuebleView.getTxtCodigoInmueble().setEnabled(false);
             inmuebleView.getJbCancelar().setVisible(true);
 
         }

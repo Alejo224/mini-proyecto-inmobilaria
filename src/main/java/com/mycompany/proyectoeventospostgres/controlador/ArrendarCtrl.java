@@ -7,15 +7,12 @@ import com.mycompany.proyectoeventospostgres.vista.ArriendoView;
 import com.mycompany.proyectoeventospostgres.vista.InmuebleView;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.*;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.sql.SQLException;
 
-public class ArrendarCtrl implements ActionListener, ItemListener {
+public class ArrendarCtrl implements ActionListener, ItemListener, MouseListener {
     private ArriendoView arriendoView;
     private final ArriendoDAO arriendoDAO = new ArriendoDAO();
     private InmuebleView inmuebleView;
@@ -44,6 +41,7 @@ public class ArrendarCtrl implements ActionListener, ItemListener {
 
                     arriendoDAO.crearArriendo(arriendoModel);
                     arriendoView.limpiarFormulario();
+                    arriendoDAO.mostrarArriendos(codigoInmueble, arriendoView.getjTable1());
                 }
 
             } catch (SQLException ex) {
@@ -84,6 +82,34 @@ public class ArrendarCtrl implements ActionListener, ItemListener {
         }
         if (e.getSource().equals(arriendoView.getComboBoxInmueble())){
             String seleccionado = (String) arriendoView.getComboBoxInmueble().getSelectedItem();
+            arriendoDAO.mostrarArriendos(Integer.parseInt(seleccionado), arriendoView.getjTable1());
         }
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (e.getSource().equals(arriendoView.getjTable1())) {
+            System.out.println("Fila seleccionada");
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }
