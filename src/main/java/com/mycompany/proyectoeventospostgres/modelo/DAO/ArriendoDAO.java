@@ -41,39 +41,70 @@ public class ArriendoDAO {
 
     //metodo actualizar
     public void actualizarArriendo(ArriendoModel arriendo) throws SQLException{
-        String consulta = "UPDATE arriendo SET codigo_inmueble = ?, fecha_inicio = ?, fecha_fin = ?, " +
+        String consulta = "UPDATE arriendo SET id_arriendo =  ? ,codigo_inmueble = ?, fecha_inicio = ?, fecha_fin = ?, " +
                 "monto_mensual = ?, comision_agente = ?, comision_inmobiliaria = ?, " +
                 "fk_cliente = ?, fk_agente = ? WHERE codigo_arriendo = ?";
 
-        CallableStatement cs = conexionBD.establecerConnetion().prepareCall(consulta);
+        PreparedStatement stmt = conexionBD.establecerConnetion().prepareCall(consulta);
 
-        cs.setInt(1, arriendo.getCodigoInmueble());
-        cs.setDate(2, arriendo.getFechaInicioSQL());
-        cs.setDate(3, arriendo.getFechaFinSQL());
-        cs.setBigDecimal(4, arriendo.getMontoMensual());
-        cs.setBigDecimal(5, arriendo.getComisionAgente());
-        cs.setBigDecimal(6, arriendo.getComisionInmobilaria());
-        cs.setInt(7, arriendo.getCedulaCliente());
-        cs.setInt(8, arriendo.getCedulaAgente());
-        cs.execute();
+        stmt.setInt(1, arriendo.getIdArriendo());
+        stmt.setInt(2, arriendo.getCodigoInmueble());
+        stmt.setDate(2, arriendo.getFechaInicioSQL());
+        stmt.setDate(3, arriendo.getFechaFinSQL());
+        stmt.setBigDecimal(4, arriendo.getMontoMensual());
+        stmt.setBigDecimal(5, arriendo.getComisionAgente());
+        stmt.setBigDecimal(6, arriendo.getComisionInmobilaria());
+        stmt.setInt(7, arriendo.getCedulaCliente());
+        stmt.setInt(8, arriendo.getCedulaAgente());
+        stmt.setInt(9, arriendo.getIdArriendo());
+        stmt.execute();
 
         JOptionPane.showMessageDialog(null, "Arriendo actualizado con éxito",
                 "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    public void ElimnarArriendo(int idArriendo) throws SQLException{
+    public boolean finalizarArriendo(int idArriendo, String motivo){
 
-        String consulta = "DELETE FROM arriendo WHERE id_arriendo=? ;";
+        Connection connection = null;
+        try{
+            connection = conexionBD.establecerConnetion();
+            connection.setAutoCommit(false); //Iniciar transacción
 
-        CallableStatement cs = conexionBD.establecerConnetion().prepareCall(consulta);
-        cs.setInt(1, idArriendo);
+            // mover a historico el arriendo a elimnar
+            String sqlInsert = "INSERT INTO historico_arriendos " +
+                    "SELECT id_arriendo, codigo_inmueble, fecha_inicio, " +
+                    "fecha_fin, monto_mensual, comision_agente, " +
+                    "comision_inmobiliaria, fk_cliente, fk_agente, " +
+                    "fecha_registro, NOW(), ? " +  // fecha_finalizacion y motivo
+                    "FROM arriendo WHERE id_arriendo = ?";
 
-        int respuesta = JOptionPane.showConfirmDialog(null, "¿Estás seguro de eliminar el INMUEBLE?",
-                "Confimación de elimnar agente",JOptionPane.YES_NO_OPTION);
+            PreparedStatement stmtInsert = connection.prepareStatement(sqlInsert);
+            stmtInsert.setString(1, motivo);
+            stmtInsert.setInt(2, idArriendo);
 
-        if (respuesta == 0){
-            cs.execute();
-            JOptionPane.showMessageDialog(null,"Elimino Correctamente");
+            //Eliminar el arriendo activo que se encuentra en la tabla de arriendo
+            String sqlDelete = "DELETE FROM arriendo WHERE id_arriendo = ?";
+            PreparedStatement stmtDelete = connection.prepareStatement(sqlDelete);
+            stmtDelete.setInt(1, idArriendo);
+
+            int moved = stmtInsert.executeUpdate();
+            int deleted = stmtDelete.executeUpdate();
+
+            if (moved == 1 && deleted == 1){
+                connection.commit();    // Confirma ambas operaciones
+                System.out.println("Operacion exitosa");
+                return true;
+            } else {
+                connection.rollback();
+                return false;
+            }
+
+        } catch (SQLException e) {
+            if(connection != null) try { connection.rollback(); } catch (SQLException ex) {}
+            e.printStackTrace();
+            return false;
+        } finally {
+            if(connection != null) try { connection.setAutoCommit(true); connection.close(); } catch (SQLException e) {}
         }
     }
 
