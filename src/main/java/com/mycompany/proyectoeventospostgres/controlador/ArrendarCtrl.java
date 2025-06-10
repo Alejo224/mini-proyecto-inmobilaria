@@ -91,9 +91,9 @@ public class ArrendarCtrl implements ActionListener, ItemListener, MouseListener
             if (motivo != null){
                 System.out.println("se puede finalizar");
                 arriendoDAO.finalizarArriendo(codigoArriendo, motivo);
-                arriendoDAO.mostrarArriendos(codigoArriendo, arriendoView.getjTable1());
                 arriendoDAO.setIdArriendo(-1);
                 arriendoView.limpiarFormulario();
+                arriendoDAO.mostrarArriendos(codigoArriendo, arriendoView.getjTable1());
             }
         }
 
@@ -119,13 +119,15 @@ public class ArrendarCtrl implements ActionListener, ItemListener, MouseListener
                     return;
                 }
                 //metodo para actualizar el arriendo
-                arriendoDAO.actualizarArriendo(fechaInicio, fechaFin, jtxtMontoMensual, cedulaCliente, cedulaAgente, codigoInmueble,
-                        codigoArriendo);
-                arriendoView.limpiarFormulario();
-                codigoArriendo = -1;
-                // Recargar la tabla
-                int codigo = Integer.parseInt(codigoInmueble.getSelectedItem().toString());
-                arriendoDAO.mostrarArriendos(codigo, arriendoView.getjTable1());
+                 if (arriendoDAO.actualizarArriendo(fechaInicio, fechaFin, jtxtMontoMensual, cedulaCliente, cedulaAgente, codigoInmueble,
+                        codigoArriendo)){
+                     arriendoView.limpiarFormulario();
+                     codigoArriendo = -1;
+                     // Recargar la tabla
+                     int codigo = Integer.parseInt(codigoInmueble.getSelectedItem().toString());
+                     arriendoDAO.mostrarArriendos(codigo, arriendoView.getjTable1());
+                 }
+
 
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(arriendoView, "Error al guardar en base de datos: " + ex.getMessage(),

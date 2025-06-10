@@ -4,29 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="04bcac24-740b-4096-8188-94aaf79ed519" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/422c90cf-365d-4ed3-b609-9d6e1593b00c.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/422c90cf-365d-4ed3-b609-9d6e1593b00c.xml" afterDir="false" />
+    <list default="true" id="04bcac24-740b-4096-8188-94aaf79ed519" name="Changes" comment="refactor: isDisponible en ArriendoDAO y nuevas acciones en ArrendarCtrl&#10;&#10;- Modificado el método isDisponible en ArriendoDAO: se agregó el parámetro idArriendo y la lógica para excluir el arriendo actual durante la validación en caso de edición.&#10;- Actualizado el método validarArriendo para soportar creación y edición correctamente.&#10;- En ArrendarCtrl se añadieron los botones  cancelar, finalizarArriendo y actualizarArriendo, con su respectiva lógica para gestionar correctamente las acciones del usuario.&#10;- Nueva dependencia de JUint para hacer test unitarios.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/controlador/ArrendarCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/controlador/ArrendarCtrl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/controlador/InmuebleCtrl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/controlador/InmuebleCtrl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/modelo/ArriendoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/modelo/ArriendoModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/modelo/DAO/ArriendoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/modelo/DAO/ArriendoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/modelo/InmuebleModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/modelo/InmuebleModel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/vista/ArriendoView.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/vista/ArriendoView.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/vista/ArriendoView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/mycompany/proyectoeventospostgres/vista/ArriendoView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/controlador/ArrendarCtrl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/controlador/ArrendarCtrl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/controlador/ArrendarInmuebleCtrl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/controlador/InmuebleCtrl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/controlador/InmuebleCtrl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/modelo/ArriendoModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/modelo/ArriendoModel.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/modelo/DAO/ArriendoDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/modelo/DAO/ArriendoDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/modelo/InmuebleModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/modelo/InmuebleModel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/ArrendarInmuebleView$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/ArrendarInmuebleView$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/ArrendarInmuebleView$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/ArrendarInmuebleView.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/ArriendoView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/ArriendoView$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/ArriendoView$2.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/ArriendoView.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/mycompany/proyectoeventospostgres/vista/ArriendoView.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -329,7 +314,17 @@
       <workItem from="1749428674982" duration="12641000" />
       <workItem from="1749475804769" duration="6284000" />
       <workItem from="1749568615697" duration="9241000" />
+      <workItem from="1749579607804" duration="3646000" />
     </task>
+    <task id="LOCAL-00001" summary="refactor: isDisponible en ArriendoDAO y nuevas acciones en ArrendarCtrl&#10;&#10;- Modificado el método isDisponible en ArriendoDAO: se agregó el parámetro idArriendo y la lógica para excluir el arriendo actual durante la validación en caso de edición.&#10;- Actualizado el método validarArriendo para soportar creación y edición correctamente.&#10;- En ArrendarCtrl se añadieron los botones  cancelar, finalizarArriendo y actualizarArriendo, con su respectiva lógica para gestionar correctamente las acciones del usuario.&#10;- Nueva dependencia de JUint para hacer test unitarios.">
+      <option name="closed" value="true" />
+      <created>1749581288837</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1749581288838</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -348,6 +343,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="refactor: nueva informacion en el archvio xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: nueva informacion en el archvio xml" />
+    <MESSAGE value="refactor: isDisponible en ArriendoDAO y nuevas acciones en ArrendarCtrl&#10;&#10;- Modificado el método isDisponible en ArriendoDAO: se agregó el parámetro idArriendo y la lógica para excluir el arriendo actual durante la validación en caso de edición.&#10;- Actualizado el método validarArriendo para soportar creación y edición correctamente.&#10;- En ArrendarCtrl se añadieron los botones  cancelar, finalizarArriendo y actualizarArriendo, con su respectiva lógica para gestionar correctamente las acciones del usuario.&#10;- Nueva dependencia de JUint para hacer test unitarios." />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: isDisponible en ArriendoDAO y nuevas acciones en ArrendarCtrl&#10;&#10;- Modificado el método isDisponible en ArriendoDAO: se agregó el parámetro idArriendo y la lógica para excluir el arriendo actual durante la validación en caso de edición.&#10;- Actualizado el método validarArriendo para soportar creación y edición correctamente.&#10;- En ArrendarCtrl se añadieron los botones  cancelar, finalizarArriendo y actualizarArriendo, con su respectiva lógica para gestionar correctamente las acciones del usuario.&#10;- Nueva dependencia de JUint para hacer test unitarios." />
   </component>
 </project>
