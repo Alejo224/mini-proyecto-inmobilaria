@@ -2,18 +2,19 @@ package com.mycompany.proyectoeventospostgres.modelo.DAO;
 
 import com.mycompany.proyectoeventospostgres.modelo.ArriendoModel;
 import com.mycompany.proyectoeventospostgres.modelo.ConexionBD;
-import com.mycompany.proyectoeventospostgres.vista.ArriendoView;
+import com.toedter.calendar.JDateChooser;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.math.BigDecimal;
 import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
-public class ArriendoDAO {
+public class ArriendoDAO extends ArriendoModel{
 
     private final ConexionBD conexionBD = new ConexionBD();
     private ArriendoModel arriendoModel = new ArriendoModel();
-    private int codigoInmueble;
 
     public ArriendoDAO(){}
 
@@ -43,27 +44,49 @@ public class ArriendoDAO {
     }
 
     //metodo actualizar
-    public void actualizarArriendo(ArriendoModel arriendo) throws SQLException{
+    public boolean actualizarArriendo(JDateChooser fechaInicio,
+                                   JDateChooser fechaFin, JTextField montoMensual, JComboBox boxCodigoCliente, JComboBox boxCodigoAgente,
+                                      JComboBox boxCodigoInmueble, int idArriendo)
+            throws SQLException, NumberFormatException, IllegalArgumentException{
+
+        //Obener los datos desde la ventana
+        int cdInmueble = Integer.parseInt(boxCodigoInmueble.getSelectedItem().toString());
+        int cdAgente = Integer.parseInt(boxCodigoAgente.getSelectedItem().toString());
+        int cdCliente = Integer.parseInt(boxCodigoCliente.getSelectedItem().toString());
+        //int idArriendo = arriendoModel.getIdArriendo();
+        java.util.Date dateStart = fechaInicio.getDate();
+        java.util.Date dateEnd = fechaFin.getDate();
+        BigDecimal monto = new BigDecimal(montoMensual.getText());
+
+        //validar si los datos cumple con los requisitos
+        if (!validarArriendo(idArriendo, cdInmueble, dateStart, dateEnd, monto.doubleValue())){
+            return false;
+        }
+
+        arriendoModel = new ArriendoModel(cdCliente, cdInmueble, dateStart, cdAgente, dateEnd, monto);
+
+        // consulta de sql
         String consulta = "UPDATE arriendo SET id_arriendo =  ? ,codigo_inmueble = ?, fecha_inicio = ?, fecha_fin = ?, " +
                 "monto_mensual = ?, comision_agente = ?, comision_inmobiliaria = ?, " +
-                "fk_cliente = ?, fk_agente = ? WHERE codigo_arriendo = ?";
+                "fk_cliente = ?, fk_agente = ? WHERE id_arriendo = ?";
 
         PreparedStatement stmt = conexionBD.establecerConnetion().prepareCall(consulta);
-
-        stmt.setInt(1, arriendo.getIdArriendo());
-        stmt.setInt(2, arriendo.getCodigoInmueble());
-        stmt.setDate(3, arriendo.getFechaInicioSQL());
-        stmt.setDate(4, arriendo.getFechaFinSQL());
-        stmt.setBigDecimal(5, arriendo.getMontoMensual());
-        stmt.setBigDecimal(6, arriendo.getComisionAgente());
-        stmt.setBigDecimal(7, arriendo.getComisionInmobilaria());
-        stmt.setInt(8, arriendo.getCedulaCliente());
-        stmt.setInt(9, arriendo.getCedulaAgente());
-        stmt.setInt(10, arriendo.getIdArriendo());
+        //enviar los datos a la consulta sql
+        stmt.setInt(1, idArriendo);
+        stmt.setInt(2, arriendoModel.getCodigoInmueble());
+        stmt.setDate(3,arriendoModel.getFechaInicioSQL());
+        stmt.setDate(4, arriendoModel.getFechaFinSQL());
+        stmt.setBigDecimal(5, arriendoModel.getMontoMensual());
+        stmt.setBigDecimal(6, arriendoModel.getComisionAgente());
+        stmt.setBigDecimal(7, arriendoModel.getComisionInmobilaria());
+        stmt.setInt(8, arriendoModel.getCedulaCliente());
+        stmt.setInt(9, arriendoModel.getCedulaAgente());
+        stmt.setInt(10, idArriendo);
         stmt.execute();
 
         JOptionPane.showMessageDialog(null, "Arriendo actualizado con éxito",
                 "ÉXITO", JOptionPane.INFORMATION_MESSAGE);
+        return true;
     }
 
     public boolean finalizarArriendo(int idArriendo, String motivo){
@@ -111,20 +134,37 @@ public class ArriendoDAO {
         }
     }
 
-    private boolean isDisponible(int codigoInmueble, Date nuevoInicio, Date nuevoFin){
+    private boolean isDisponible(int idArriendoActual, int codigoInmueble, Date nuevoInicio, Date nuevoFin) {
         String sql = "SELECT COUNT(*) FROM arriendo " +
-                "   WHERE codigo_inmueble = ? AND activo = 1 " +
-                "AND fecha_inicio <= ? AND fecha_fin >= ? ";
+                "WHERE codigo_inmueble = ? AND activo = 1 ";
 
-        try(PreparedStatement stmt = conexionBD.establecerConnetion().prepareStatement(sql)){
+        // Si es edición, excluye el id actual
+        if (idArriendoActual != -1) {
+            sql += "AND id_arriendo != ? ";
+        }
 
-            stmt.setInt(1, codigoInmueble);
-            stmt.setDate(2, new Date(nuevoFin.getTime()));
-            stmt.setDate(3, new Date(nuevoInicio.getTime()));
+        sql += "AND (" +
+                "     (fecha_inicio <= ? AND fecha_fin >= ?) " +
+                "  OR (fecha_inicio <= ? AND fecha_fin >= ?) " +
+                "  OR (fecha_inicio >= ? AND fecha_fin <= ?) " +
+                ")";
+        try (PreparedStatement stmt = conexionBD.establecerConnetion().prepareStatement(sql)) {
+            int index = 1;
+            stmt.setInt(index++, codigoInmueble);
+
+            if (idArriendoActual != -1) {
+                stmt.setInt(index++, idArriendoActual);
+            }
+
+            stmt.setDate(index++, new Date(nuevoFin.getTime()));
+            stmt.setDate(index++, new Date(nuevoInicio.getTime()));
+            stmt.setDate(index++, new Date(nuevoFin.getTime()));
+            stmt.setDate(index++, new Date(nuevoInicio.getTime()));
+            stmt.setDate(index++, new Date(nuevoInicio.getTime()));
+            stmt.setDate(index++, new Date(nuevoFin.getTime()));
 
             ResultSet rs = stmt.executeQuery();
             return rs.next() && rs.getInt(1) == 0;
-
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
@@ -145,7 +185,7 @@ public class ArriendoDAO {
         }
     }
 
-    public boolean validarArriendo(int codigoInmueble, java.util.Date fechaInicio, java.util.Date fechaFin,
+    public boolean validarArriendo(int idArriendo, int codigoInmueble, java.util.Date fechaInicio, java.util.Date fechaFin,
                                 double montoMensual) throws SQLException{
         // validar fecha
         if (fechaInicio == null){
@@ -160,7 +200,7 @@ public class ArriendoDAO {
         Date fechaFinSQL = new java.sql.Date(fechaFin.getTime());
 
         //validar si la fecha seleccionada se encuentra disponible
-        if (!isDisponible(codigoInmueble, fechaInicioSQL, fechaFinSQL)) {
+        if (!isDisponible(idArriendo, codigoInmueble, fechaInicioSQL, fechaFinSQL)) {
             JOptionPane.showMessageDialog(null, "Ya se encuentra arrendado. Fechas posibles \n"
                             + fechaInicioSQL + " y " +fechaFinSQL,
                     "Error", JOptionPane.INFORMATION_MESSAGE);
@@ -183,18 +223,17 @@ public class ArriendoDAO {
     }
 
     public boolean mostrarArriendos(int codigoInmueble, JTable tablaArriendos){
-        String sql = "SELECT fk_agente, fk_cliente, fecha_inicio, fecha_fin, monto_mensual, comision_agente, comision_inmobiliaria" +
+        String sql = "SELECT id_arriendo, fk_agente, fk_cliente, fecha_inicio, fecha_fin, monto_mensual, comision_agente" +
                 " FROM arriendo WHERE codigo_inmueble = ?;";
 
         DefaultTableModel model = new DefaultTableModel();
 
+        model.addColumn("Id arriendo");
         model.addColumn("C. Agente");
         model.addColumn("C. Cliente");
         model.addColumn("Fecha Inicio");
         model.addColumn("Fecha Fin");
         model.addColumn( "Monto Mensual");
-        model.addColumn( "Comision Agente");
-        model.addColumn( "Comision Inmobilaria");
 
         if (tablaArriendos == null){
             tablaArriendos = new JTable();
@@ -208,18 +247,17 @@ public class ArriendoDAO {
 
             while (rs.next()){
                 hayResultados = true;
+                arriendoModel.setIdArriendo(rs.getInt("id_arriendo"));
                 arriendoModel.setCedulaAgente(rs.getInt("fk_agente"));
                 arriendoModel.setCedulaCliente(rs.getInt("fk_cliente"));
                 arriendoModel.setFechaInicio(rs.getDate("fecha_inicio"));
                 arriendoModel.setFechaFin(rs.getDate("fecha_fin"));
                 arriendoModel.setMontoMensual(BigDecimal.valueOf(rs.getDouble("monto_mensual")));
-                arriendoModel.setComisionAgente(BigDecimal.valueOf(rs.getDouble("comision_agente")));
-                arriendoModel.setComisionInmobilaria(BigDecimal.valueOf(rs.getDouble("comision_inmobiliaria")));
 
                 System.out.println(arriendoModel.toString());
 
-                model.addRow(new Object[]{ arriendoModel.getCedulaAgente(), arriendoModel.getCedulaCliente(), arriendoModel.getFechaInicioSQL(), arriendoModel.getFechaFinSQL(),
-                arriendoModel.getMontoMensual(), arriendoModel.getComisionAgente(), arriendoModel.getComisionInmobilaria()});
+                model.addRow(new Object[]{ arriendoModel.getIdArriendo(), arriendoModel.getCedulaAgente(), arriendoModel.getCedulaCliente(), arriendoModel.getFechaInicioSQL(), arriendoModel.getFechaFinSQL(),
+                arriendoModel.getMontoMensual()});
             }
             tablaArriendos.setModel(model);
             return hayResultados;
@@ -229,16 +267,35 @@ public class ArriendoDAO {
         }
     }
 
-    public void mostrarArriendoTabla(JTable tablaArriendos){
-        DefaultTableModel model = new DefaultTableModel();
+    public void seleccionar(JTable tablaArriendos, JDateChooser fechaInicio,
+                            JDateChooser fechaFin, JTextField montoMensual, JComboBox boxCodigoCliente, JComboBox boxCodigoAgente){
+        int fila = tablaArriendos.getSelectedRow();
+        if (fila >= 0){
+            String codigoInmueble = tablaArriendos.getValueAt(fila, 0).toString();
+            String codigoAgente = tablaArriendos.getValueAt(fila, 1).toString();
+            String codigoCliente = tablaArriendos.getValueAt(fila, 2).toString();
+            String fechaInicioTexto = tablaArriendos.getValueAt(fila, 3).toString();
+            String fechaFinTexto = tablaArriendos.getValueAt(fila, 4).toString();
+            montoMensual.setText(tablaArriendos.getValueAt(fila, 5).toString());
 
-        if (tablaArriendos == null){
-            tablaArriendos = new JTable();
+            boxCodigoAgente.setSelectedItem(codigoAgente);
+            boxCodigoCliente.setSelectedItem(codigoCliente);
+            setIdArriendo(Integer.parseInt(codigoInmueble));
+
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+
+            try {
+                java.util.Date fechaStart = formato.parse(fechaInicioTexto);
+                fechaInicio.setDate(fechaStart);
+                java.util.Date fechaEnd = formato.parse(fechaFinTexto);
+                fechaFin.setDate(fechaEnd);
+
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
         }
-
-        tablaArriendos.setModel(model);
-
     }
+
     public void mostrarComboBoxInmueble(JComboBox comboBox){
 
         DefaultComboBoxModel modelo = new DefaultComboBoxModel();
@@ -319,29 +376,6 @@ public class ArriendoDAO {
         }finally {
             conexionBD.ConnectionClosed();
         }
-    }
-
-    public void setCodigoInmueble(int codigoInmueble){
-        this.codigoInmueble = codigoInmueble;
-    }
-    public int getCodigoInmueble(){
-        return codigoInmueble;
-    }
-
-    public static void main(String[] args)  {
-        /*
-        ArriendoModel arriendo = new ArriendoModel(121, 99, Date.valueOf("2024-11-19"),
-                1,Date.valueOf("2025-11-19"), new BigDecimal("15000.00") );
-
-        ArriendoDAO obj = new ArriendoDAO();
-        System.out.println(arriendo.toString());
-        try{
-            obj.crearArriendo(arriendo);
-        }catch (SQLException e){
-            System.out.println(e);
-        }
-
-         */
     }
 
 }

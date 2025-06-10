@@ -127,7 +127,14 @@ public class InmuebleCtrl implements ActionListener, MouseListener, ItemListener
 
         if (e.getSource().equals(inmuebleView.getJbArrendarInmueble())){
             System.out.println("Ingresando Arrendar inmueble");
+            String codigoInmueble = inmuebleView.getTxtCodigoInmueble().getText();
 
+            // verificar si ha seleccionado un inmueble para arendar
+            if (codigoInmueble.isBlank()){
+                JOptionPane.showMessageDialog(inmuebleView, "Por favor seleccione el inmueble que desea arrendar.",
+                        "Seleccione un inmueble", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
             inmuebleView.setVisible(false);
 
             if (arriendoView == null){
@@ -135,7 +142,9 @@ public class InmuebleCtrl implements ActionListener, MouseListener, ItemListener
             }
             arriendoView.setVisible(true);
             if (arriendoDAO == null ) arriendoDAO = new ArriendoDAO();
-            arriendoDAO.mostrarArriendos(0, arriendoView.getjTable1());
+            //cargar la informacion de la tabla
+            arriendoDAO.mostrarArriendos(Integer.parseInt(codigoInmueble), arriendoView.getjTable1());
+            arriendoView.getComboBoxInmueble().setSelectedItem(codigoInmueble);
         }
     }
 

@@ -41,6 +41,7 @@ public class ArriendoModel {
                 "cedulaCliente=" + cedulaCliente +
                 ", codigoInmueble=" + codigoInmueble +
                 ", cedulaAgente=" + cedulaAgente +
+                ", idArriendo=" + idArriendo +
                 ", fechaInicio=" + fechaInicio +
                 ", fechaFin=" + fechaFin +
                 ", montoMensual=" + montoMensual +

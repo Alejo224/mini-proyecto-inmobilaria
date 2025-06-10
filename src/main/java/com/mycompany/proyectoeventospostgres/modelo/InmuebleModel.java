@@ -196,23 +196,4 @@ public class InmuebleModel {
         }
     }
 
-    public boolean disponiblidadInmueble(int codigoInmueble) {
-        String sql = "SELECT precio_cliente FROM inmueble WHERE codigo_inmueble = ?";
-
-        try (Connection conn = conexionBD.establecerConnetion();
-             PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-            pstmt.setInt(1, codigoInmueble);
-            ResultSet rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                return rs.getObject("precio_cliente") == null; // Disponible si es NULL
-            }
-            return false; // Inmueble no existe
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al verificar disponibilidad: " + e.getMessage());
-            return false;
-        }
-    }
 }
