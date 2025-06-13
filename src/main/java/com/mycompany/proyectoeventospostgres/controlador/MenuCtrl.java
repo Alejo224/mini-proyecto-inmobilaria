@@ -14,6 +14,7 @@ public class MenuCtrl implements ActionListener {
     private PropietarioView propietarioView;
     private InmuebleView inmuebleView;
     private LoguinView loguinView;
+    private MenuKpisView kpisView;
 
     public MenuCtrl(MenuView menuView){
         this.menuView = menuView;
@@ -70,6 +71,19 @@ public class MenuCtrl implements ActionListener {
             }
             inmuebleView.setVisible(true);
         }
+        
+        if (e.getSource().equals(menuView.getJbKpis())){
+            System.out.println("Ingresando gestion de inmuebles");
+
+            menuView.setVisible(false);
+
+            if (kpisView == null){
+                kpisView = new MenuKpisView();
+            }
+            kpisView.setVisible(true);
+        }
+        
+        
 
 
 
