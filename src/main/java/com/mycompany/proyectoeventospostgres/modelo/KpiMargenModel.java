@@ -76,7 +76,6 @@ public class KpiMargenModel {
     }
     
     public void mostrar(JTable tablatotal){
-        System.out.println("fuenciona");
         DefaultTableModel modelo = new DefaultTableModel();
 
         modelo.addColumn("Codigo inmueble");
@@ -110,10 +109,9 @@ public class KpiMargenModel {
             }
             tablatotal.setModel(modelo);
         }catch (Exception e){
-
             JOptionPane.showMessageDialog(null,"Error: "+ e);
         }finally {
-//            conexionBD.ConnectionClosed();
+            conexionBD.ConnectionClosed();
         }
     }
 }

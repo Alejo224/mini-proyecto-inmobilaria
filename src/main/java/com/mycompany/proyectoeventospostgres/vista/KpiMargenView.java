@@ -17,13 +17,14 @@ public class KpiMargenView extends javax.swing.JFrame {
     /**
      * Creates new form KpiMargenView
      */
-    private final KpiMargenModel kpiMargenModel;
+    private KpiMargenModel kpiMargenModel;
     private KpiMargenCtrl kpiMargenCtrl;
     public KpiMargenView() {
         kpiMargenCtrl = new KpiMargenCtrl(this);
+        initComponents();
         kpiMargenModel = new KpiMargenModel();
         kpiMargenModel.mostrar(tbLista);
-        initComponents();
+
     }
     
     public JButton getJbSalir() {
@@ -50,10 +51,7 @@ public class KpiMargenView extends javax.swing.JFrame {
 
         tbLista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
 
