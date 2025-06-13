@@ -42,6 +42,10 @@ public class MenuView extends javax.swing.JFrame {
     public JButton getJbGestionInmueble() {
         return jbGestionInmuebles;
     }
+    
+    public JButton getJbKpis(){
+        return jbKpis;
+    }
 
     public JButton getJbSalir() {
         return jbSalir;
@@ -65,6 +69,7 @@ public class MenuView extends javax.swing.JFrame {
         jbGestionPropietario = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
         jbGestionInmuebles = new javax.swing.JButton();
+        jbKpis = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,11 +113,14 @@ public class MenuView extends javax.swing.JFrame {
         jbGestionPropietario.addActionListener(menuCtrl);
 
         jbSalir.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jbSalir.setText("Cerrar sesion");
-        jbSalir.addActionListener(menuCtrl);
+        jbSalir.setText("Salir");
 
         jbGestionInmuebles.setText("Gestión Inmuebles");
         jbGestionInmuebles.addActionListener(menuCtrl);
+
+        jbKpis.setText("KPIs");
+        jbKpis.setToolTipText("");
+        jbKpis.addActionListener(menuCtrl);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -125,7 +133,8 @@ public class MenuView extends javax.swing.JFrame {
                     .addComponent(jbGestionAgenteComercial, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbGestionCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jbGestionPropietario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 590, Short.MAX_VALUE)
-                    .addComponent(jbSalir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jbSalir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbKpis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -140,8 +149,10 @@ public class MenuView extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jbGestionInmuebles, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(jbKpis)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(jbSalir)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -248,6 +259,7 @@ public class MenuView extends javax.swing.JFrame {
     private javax.swing.JButton jbGestionCliente;
     private javax.swing.JButton jbGestionInmuebles;
     private javax.swing.JButton jbGestionPropietario;
+    private javax.swing.JButton jbKpis;
     private javax.swing.JButton jbSalir;
     // End of variables declaration//GEN-END:variables
 }

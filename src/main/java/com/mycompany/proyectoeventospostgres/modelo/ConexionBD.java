@@ -16,11 +16,11 @@ public class ConexionBD {
 
 
     Connection connection = null;
-    String user = System.getenv("DB_USER");
-    String password = System.getenv("DB_PASSWORD");
-    String bd = System.getenv("DB");
-    String ip = System.getenv("DB_IP");
-    String puerto = System.getenv("DB_PUERTO");
+    String user = "root";
+    String password = "admin";
+    String bd = "inmobilaria";
+    String ip = "localhost";
+    String puerto = "3306";
 
     String cadena = "jdbc:mysql://"+ip+":"+puerto+"/"+bd;
 
