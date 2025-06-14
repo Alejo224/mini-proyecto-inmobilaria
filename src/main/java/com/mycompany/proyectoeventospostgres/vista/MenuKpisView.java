@@ -27,6 +27,14 @@ public class MenuKpisView extends javax.swing.JFrame {
         return jbMargenGanancia;
     }
 
+    public JButton getjButton1() {
+        return jButton1;
+    }
+
+    public JButton getjButton3() {
+        return jButton3;
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -42,7 +50,8 @@ public class MenuKpisView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("KPIS");
+        jButton1.addActionListener(menuKpisCtrl);
 
         jbMargenGanancia.setText("Margen de ganancia en base a el precio del propietario");
         jbMargenGanancia.addActionListener(menuKpisCtrl);

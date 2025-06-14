@@ -10,7 +10,7 @@ public class MenuKpisCtrl implements ActionListener {
 
     private final MenuKpisView menuKpisView;
     private KpiMargenView kpiMargenView;
-
+    private KPIRentabilidadView kpiRentabilidadView;
 
     public MenuKpisCtrl(MenuKpisView menuKpisView){
         this.menuKpisView = menuKpisView;
@@ -26,6 +26,15 @@ public class MenuKpisCtrl implements ActionListener {
                 kpiMargenView = new KpiMargenView();
             }
             kpiMargenView.setVisible(true);
+        }
+
+        if (e.getSource().equals(menuKpisView.getjButton1())){
+            menuKpisView.setVisible(false);
+
+            if (kpiRentabilidadView == null){
+                kpiRentabilidadView = new KPIRentabilidadView();
+            }
+            kpiRentabilidadView.setVisible(true);
         }
 
 
