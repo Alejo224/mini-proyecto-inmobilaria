@@ -28,7 +28,7 @@ public class ArriendoModel {
 
     //calcular comisiones
     private void calcularComisiones(){
-        BigDecimal porcentajeAgente = new BigDecimal("0.10");  // 10%
+        BigDecimal porcentajeAgente = new BigDecimal("0.5");  // 5%
         BigDecimal porcentajInmobilaria = new BigDecimal("0.15"); // 15%
 
         this.comisionAgente = this.montoMensual.multiply(porcentajeAgente);

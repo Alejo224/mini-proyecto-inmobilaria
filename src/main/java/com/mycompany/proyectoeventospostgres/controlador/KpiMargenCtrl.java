@@ -1,6 +1,7 @@
 package com.mycompany.proyectoeventospostgres.controlador;
 
 import com.mycompany.proyectoeventospostgres.modelo.KpiMargenModel;
+import com.mycompany.proyectoeventospostgres.vista.KPIRentabilidadView;
 import com.mycompany.proyectoeventospostgres.vista.KpiMargenView;
 import com.mycompany.proyectoeventospostgres.vista.MenuView;
 import java.awt.event.ActionEvent;
